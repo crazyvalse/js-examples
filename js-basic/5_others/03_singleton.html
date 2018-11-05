@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //单体模式 （singleton）
+        //#1. 简单单体模式 - 不能 new
+        //补充： 主要用来划分命名空间
+        /*var Singleton = {
+            attr1: true,
+            attr2: 10,
+            method1: function(){
+                alert("我是方法1");
+            },
+            method2: function(){
+                alert("我是方法2");
+            }
+        };
+
+        //使用
+        Singleton.method1();
+        var Tools = {};
+        Tools.Singleton = {
+            attr1: true,
+            attr2: 10,
+            method1: function(){
+                alert("我是方法1");
+            },
+            method2: function(){
+                alert("我是方法2");
+            }
+        }
+        Tools.Singleton.method1();
+*/
+        /**
+         * #2. 借助闭包来创建单体
+         * 最主要就是保护数据
+         */
+        /* 最简单的闭包体 执行体
+        (function test(){
+            alert(11);
+        })();*/
+        /*var Tools = {};
+        Tools.Singleton = (function(){
+            //添加自己的私有成员， 不希望被外部访问的程序
+            //下面是私有的
+            var a1 = true;
+            var a2 = 10;
+            var f = function(){
+                alert('f');
+            };
+            var f2 = function(){
+                alert('f2');
+            };
+
+            //把块级作用域里的执行结果赋值给单体
+            return {
+                attr1: a1,
+                attr2: a2,
+                method1: function(){
+                    return f();
+                },
+                method2: function(){
+                    alert("我是方法2");
+                }
+            };
+        })();
+
+        //alert(Tools.Singleton.attr1);
+       //alert(Tools.Singleton.method1);
+        Tools.Singleton.method1();*/
+        /**
+         * #3. 惰性单体（和闭包单体有一些相似的地方)
+         *
+         */
+        //顶级命名空间
+        var RRR = {};
+        //基类
+        RRR.Base=(function(){
+            //控制返回的私有变量
+            var uniqueInstance;
+            //初始化单体对象的方法
+            function init(){
+                var a1 =10;
+                var a2 = true;
+                var fn1 = function(){
+                    alert('f1');
+                };
+                var fn2 = function(){
+                    alert('f2');
+                };
+                return{
+                    attr1: a1,
+                    attr2: a2,
+                    method1: function(){
+                        return fn1();
+                    },
+                    method2: function(){
+                        return fn2();
+                    }
+                }
+            }
+
+            return{
+                getInstance : function(){
+                    if(!uniqueInstance){   //如果不存在，创建单体实例
+                        uniqueInstance = init();
+                    }
+                    return uniqueInstance;
+                }
+            }
+        })();
+
+        RRR.Base.getInstance().method1();
+
+        alert(RRR.Base.getInstance().attr1);
+
+
+        /**
+         * #4. 分支单体（判断程序的分支 - 浏览器的差异检测
+         */
+
+        /*var RRR = {};
+        var dif = true;
+        RRR.More = (function(){
+         var objA = {  //火狐浏览器 内部的一些配置
+          //属性 1
+
+          //属性 2
+
+          //方法 1
+
+          //方法 2
+
+         }
+         var objB = {
+          //属性 1
+
+          //属性 2
+
+          //方法 1
+
+          //方法 2
+         }
+         return (dif) ? objA : objB;
+        })();*/
+    </script>
+</head>
+<body>
+
+</body>
+</html>

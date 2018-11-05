@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //#1. Object.getPrototypeOf() : 根据实例对象获得原型对象
+        function Person() {
+
+        }
+        Person.prototype.name = 'z3';
+        Person.prototype.age = 20;
+        Person.prototype.sayName = function () {
+            alert('我是原型对象！');
+        };
+
+        var p = new Person();
+        p.sayName();
+        /*var p1 = new Person();
+        alert(p1.name);
+
+        var prototypeObj = Object.getPrototypeOf(p1);
+        alert(prototypeObj == Person.prototype);*/
+
+        /**
+         * #2. 每次代码读取一个对象属性的时候，首先会进行一次搜索，搜索实例对象里的name，看看有没有
+         * 如果没有，再去原型里搜索，如果两次都没有，返回undefined
+         * @type {Person}
+         */
+        /*var p2 = new Person();
+        p2.name = 'w5';
+        alert(p2.name);*/
+
+        //#3. 判断一个对象属性，是属于原型属性，还是属于实例属性
+        /*var p3 = new Person();
+        alert(p3.hasOwnProperty('name'));
+        p3.name = 'w5';
+        alert(p3.hasOwnProperty('name'));*/
+
+        /**
+         * #4. in操作符： for-in
+         *
+         */
+        /*var p1 = new Person();
+        alert('name' in p1);
+        var p2 = new Person();
+        p2.name = 'w5';
+        alert('name' in p2);*/
+
+        /**
+         * #@1. ECMA5 新特性
+         * object.keys(); 拿到所有属性， 返回数组
+         */
+
+        /*var p1 = new Person();
+        p1.name = 'z3';
+        p1.age = 20;
+
+        var attributes = Object.keys(p1);
+        alert(attributes);
+
+        var attributes2 = Object.keys(Person.prototype);
+        alert(attributes2);*/
+
+        /**
+         * #@2. ECMA5 constructor属性： 该属性不能被枚举的
+         *
+         */
+        //Object.getOwnPropertyNames() 枚举出来 这个对象当中所有的属性: 不管该对象内部属性能否被 枚举
+        /*var  attributes3 = Object.getOwnPropertyNames(Person.prototype);
+        alert(attributes3);*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

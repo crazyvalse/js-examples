@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+	var getEvent = function (event) {
+		//标准浏览器返回event， IE下window.event
+		return event || window.event;
+	}
+
+	var getTarget = function (event) {
+		var event = getEvent(event);
+
+		if (event.preventDefault) {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+	};
+
+	var preventDefault = function (event) {
+		var event = getEvent(event);
+
+		if(event.preventDefault) {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+	};
+
+	document.onclick = function (e) {
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+</head>
+<body>
+
+<script>
+	/*// 1. 窗口的位置
+	 console.info(window.screenTop, window.screenLeft);
+	 // 2. 移动窗口
+	 window.moveBy(100, 100);  //有可能会被禁用
+
+	 // 3. 窗口大小
+	 console.info(window.outerHeight);
+	 console.info(window.innerHeight);
+
+	 // 4. 调整浏览器窗口大小  ---- 有可能被禁用
+	 window.resizeTo(200, 200);
+	 window.resizeBy(200, 200);*/
+
+	// 5. 导航和打开窗口
+	//var wroxWin = window.open("http://www.baidu.com", "wroxWindow", "height=400, width=400, top=1-,resizable=yes");
+	//wroxWin.close()
+	//console.info(wroxWin.closed)
+	//top.close();
+
+	// 弹出的窗口有可能被屏蔽
+
+	/*var blocked = false;
+	// 通常会抛出异常
+	try {
+		var wroxWin = window.open("http://www.baidu.com", "wroxWindow", "height=400, width=400, top=1-,resizable=yes");
+		if (wroxWin == null) {
+			blocked = true;
+		}
+	} catch (ex) {
+		blocked = true;
+	}
+
+	if (blocked) {
+		console.info("blocked!");
+	}*/
+
+	//6. 间歇调用和超时调用
+	/*var timeoutId = setTimeout(function () {
+		alert("Hi!!!");
+	}, 1000);
+	clearTimeout(timeoutId);*/
+
+	// 7. 识别客户端
+	//console.info(navigator)
+
+	// 8. 检测插件
+/*	function hasPlugin (name) {
+		name = name.toLowerCase();
+		for(var i = 0; i < navigator.plugins.length; i ++) {
+			if(navigator.plugins[i].name.toLowerCase().indexOf("name") > -1) {
+				return true;
+			}
+		}
+		return false;
+	}
+	console.info(hasPlugin("Flash"));
+	console.info(hasPlugin("QuickTime"));
+	console.info(navigator.userAgent)*/
+</script>
+</body>
+</html>

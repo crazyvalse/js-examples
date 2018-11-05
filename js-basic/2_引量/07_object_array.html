@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //去掉数组中的重复项
+        var arr = [2, 1, 2, 10, 2, 3, 5, 10, 13];
+
+        //js对象的特性: 在js对象中， key是永远不会重复的
+        var obj = new Object();
+
+        obj.name = 'z3';
+        obj.age = 20;
+        console.info(obj.name);
+
+        obj.name = 'w5';
+        console.info(obj.name);
+
+
+        /**
+         * 1. 把数组转成一个js的对象
+         * 2. 把数组中的值，变成js对象当中的key
+         * 3. 把这个对象，还原成数组
+         */
+
+        //1. 把数组转成一个js的对象
+        //2. 把数组中的值，变成js对象当中的key
+        function toObject(arr) {
+            var obj = {};
+            var j;
+            for (var i = 0, j = arr.length; i < j; i++) {
+                obj[arr[i]] = true;
+            }
+            return obj;
+        }
+
+        //3. 把这个对象，还原成数组
+        function keys(obj) {
+            var arr = [];
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    arr.push(attr);
+                }
+            }
+            return arr;
+        }
+
+        function unique(arr){
+            return keys(toObject(arr));
+        }
+        console.info(unique(arr));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

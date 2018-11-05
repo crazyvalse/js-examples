@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /**
+         * 3种方式定义函数
+         */
+        /*//#1. function语句式
+        function test1() {
+            alert("test1");
+        }
+
+        //#2. 函数的直接量 ECMAScript推荐的方式
+        var test2 = function () {
+            alert("test2");
+        };
+
+        //#3. function 构造体
+        var test3 = new Function("a", 'b', 'c', 'return a+b+c;');
+
+        alert(test3(10,1,3));*/
+
+        /**
+         * 解析顺序问题 对于function 语句式的函数，javascript解析器会优先解释
+         *
+         */
+        /*test1();
+        //相当于全局变量
+        function test1(){
+            alert(1);
+        }
+
+        test2();
+        //只有顺序执行到这里的时候 才被赋值
+        var test2 = function(){
+            alert(2);
+        }*/
+
+        /**
+         * 先把 function 放到内存当中
+         * 4
+         * 2
+         * 3
+         * 3
+         * 5
+         * 6
+         * @returns {number}
+         */
+        /*function f(){return 1;} //1先载到内存当中
+        alert(f());
+
+        //2顺序加载
+        var f = new Function('return 2;');
+        alert(f());
+        //3 顺序加载
+        var f = function () {
+            return 3;
+        };
+        alert(f());
+        //1先载到内存当中 - 读到这时 不解释了
+        function f() {
+            return 4;
+        }
+        alert(f());
+
+        var f = new Function('return 5;');
+        alert(f());
+
+        var f = function () {
+            return 6;
+        };
+        alert(f());*/
+
+        //函数作用域
+        var k = 1;
+        function t1(){
+            var k  = 2;
+            //function test(){return k;}
+            //var test = function(){return k;};
+            //test = function(){return k;};
+
+            //具有顶级域
+            var test = new Function('return k;');
+            alert(test());
+        }
+        t1();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

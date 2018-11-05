@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" charset="utf-8">
+		/*//赋值
+		var a = 3;
+		//变量一共有两种模式：全局 局部变量
+		function test () {
+			var a = 2;
+			//#1 未写var的 并且被赋值的变量，被转成了全局变量 - 不建议使用，可在查询bug的时候查看
+			c = 5;
+			console.info(a);
+		}
+
+		test();
+		//#2 需要先加载test，才能用c，否则是未定义的！
+		console.info(c);*/
+
+		/**
+		 * 基本数据类型： Number、Boolean、String、Undefined、Null
+		 * */
+		/**
+		 * number 类型 NAN 非number类型
+		 * 包括 整数和小数
+		 */
+		/*var a = 10;
+		 var b = 10.5;
+		 var c = NaN;       //not a number
+		 var d = 1/0; //正无穷
+		 var e = -1 / 0; //负无穷
+		 var f = 070;    //8进制 和16进制（0xA）
+		 console.info(f);*/
+
+		/**
+		 * #3 小数相加判断 会出现问题，因为精度的问题（17）
+		 * @type {number}
+		 */
+		/*var g = 0.1;
+		 var h = 0.2;
+		 if(g+h ==0.3) {
+		 console.info("等于");
+		 }else{
+		 console.info("不等于");
+		 }*/
+
+		/**
+		 * #4 parseInt 能直接过滤出来 int值 - 仅限于开头是数值的，如果不在开头，最后的值为nan
+		 * @type {Number}
+		 */
+		/*var i = parseInt("aaaaaabbbbb");
+		 console.info(i);
+		 var j = parseInt("a19bbbbb");
+		 console.info(j);*/
+
+		/**
+		 * #5 undefined 数据类型 他的值只有一个： undefined 表示变量被声明了，但是没有被赋值
+		 *
+		 */
+		/*var k;
+		 console.info(k);*/
+		/**
+		 * #6 null 空值
+		 */
+		/*var l = null;
+		 console.info(l);*/
+
+		/**
+		 * string
+		 */
+		/*var str1 = "字符串1";
+		 var str2 = "字符串2";*/
+		/**
+		 * Boolean
+		 */
+		/*var flag = true;*/
+
+		/**
+		 * 引用数据类型, 例如：Object RegExp Date etc.
+		 */
+		/*var arr = [1, 2, 3];    //数组
+		 var date = new Date();  //日期
+		 var obj = {};       //空对象*/
+
+		/**
+		 * typeof 操作符 用来判断数据类型的
+		 */
+		/*var z = 10;
+		 var x = 10.3
+		 var y = true;       //boolean
+		 var w = 'abc';      //string
+		 var v = new Date(); //object
+		 var n = NaN;    //number
+		 var nn = null; //object - 空对象
+		 var u = undefined;  //undefined
+		 console.info(typeof w);*/
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

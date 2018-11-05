@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div class="article">
+	<h1 class="title">用户行为的深度追踪——事件与埋点</h1>
+
+	<!-- 作者区域 -->
+	<div class="author">
+		<a class="avatar" href="/u/xyZroM">
+			<img src="//cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96" alt="96">
+		</a>
+		<div class="info">
+			<span class="name"><a href="/u/xyZroM">VentLam</a></span>
+			<!-- 关注用户按钮 -->
+			<a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+			<!-- 文章数据信息 -->
+			<div class="meta">
+				<!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+				<span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2017.12.04 01:10">2016.08.05 19:36*</span>
+				<span class="wordage">字数 3131</span>
+				<span class="views-count">阅读 10462</span><span class="comments-count">评论 3</span><span class="likes-count">喜欢 51</span><span class="rewards-count ">赞赏 1</span>
+			</div>
+		</div>
+		<!-- 如果是当前作者，加入编辑按钮 -->
+	</div>
+
+
+	<!-- 文章内容 -->
+	<div data-note-content="" class="show-content">
+		<div class="show-content-free">
+			<h3>一、什么是事件？</h3>
+			<blockquote>
+				<p>不同于传统的页面路径跳转追踪，事件尝试追踪用户在网站或APP上发生的每一个动作（包括浏览页面）</p>
+			</blockquote>
+			<ul>
+				<li>什么是事件
+					<ul>
+						<li>追踪或记录的用户行为或业务过程（注册账号，登录，观看视频，点赞，评论，关注等等）</li>
+						<li>事件三要素
+							<ul>
+								<li>操作（action):定义一个操作动作（如点击、拖拽）</li>
+								<li>参数/属性：参数可以是任何和这个事件相关的属性，包括触发这个事件的（人、时间、地点、设备、操作的业务信息）
+									<ul>
+										<li>举例：
+											<ul>
+												<li>对于一个“购买”类型的事件，则可能需要记录的字段有：商品名称、商品类型、购买数量、购买金额、 付款方式等；</li>
+												<li>对于一个“搜索”类型的事件，则可能需要记录的字段有：搜索关键词、搜索类型等</li>
+												<li>对于一个“点击”类型的事件，则可能需要记录的字段有：点击 URL、点击 title、点击位置等</li>
+												<li>对于一个“用户注册”类型的事件，则可能需要记录的字段有：注册渠道、注册邀请码等</li>
+												<li>对于一个“用户投诉”类型的事件，则可能需要记录的字段有：投诉内容、投诉对象、投诉渠道、投诉方式等</li>
+												<li>对于一个“申请退货”类型的事件，则可能需要记录的字段有：退货金额、退货原因、退货方式等。</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>属性值：参数/属性的值参
+									<ul>
+										<li>
+											<p>举例： 参数和值以kv形式存储在json串中</p>
+											<pre class="hljs json"><code class="json">{<span class="hljs-attr">"age"</span>: <span class="hljs-number">13</span>, <span class="hljs-attr">"gender"</span>: <span class="hljs-string">"male"</span>, <span class="hljs-attr">"photo filetype"</span>: <span class="hljs-string">"png"</span>}
+</code></pre>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<h3>二、埋点</h3>
+			<blockquote>
+				<p>目前的埋点方式：<br>
+				   按埋点工具：代码埋点、可视化埋点、‘无埋点’<br>
+				   按埋点位置：前段/客户单埋点、后端/服务端埋点</p>
+			</blockquote>
+			<h4>1. 代码埋点(客户端)</h4>
+			<ul>
+				<li>
+					<p><strong>原理</strong></p>
+					<ul>
+						<li>要统计某页面一个Button点击事件次数。首先在APP或者界面初始化的时候，初始化埋点SDK，然后在这个Button事件发生时就调用SDK里面相应的方法，发送接口发送数据</li>
+						<li>App端为了避免浪费用户的流量，一般情况下，都是将多条数据打包，并且等待网络状况良好以及应用处于前台时才压缩上传</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>优点</strong></p>
+					<ul>
+						<li>控制精准: 可以非常精确地选择什么时候发送数据</li>
+						<li>自定义：随意自定义属性、自定义事件</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>不足</strong></p>
+					<ul>
+						<li>人力成本高
+							<blockquote>
+								<p>埋点地方过多，因为不同的版本验证问题不同不易于管理。每一个控件的埋点都需要添加相应的手工代码，不仅工作量大，而且限定了必须是技术人员才能完成<br>
+								   + 版本更新的代价大，易造成埋点混乱<br>
+								   &gt; 每一次更新埋点方案，就意味着必须要修改代码，然后通过各个渠道进行分发，一旦有相当多数量的用户对新版的更新不感冒时，导致埋点代码能够采集到的数据也就得不到更新，前功尽弃,很难在实际日常运营中能够及时依赖实时数据捕获焦点做出应变<br>
+								   + 数据传输的时效性和可靠性不好保证<br>
+								   * 客户端埋点的痛病<br>
+								   + 支持的统计大多是简单计数，无法完成完整的多维分析功能</p>
+							</blockquote>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>应用场景和产品举例</strong></p>
+					<ul>
+						<li>场景：常用于简单的pv统计，如网站pv、APP的DAU等宏观数据</li>
+						<li>第三方产品：<a href="https://link.jianshu.com?t=http://www.umeng.com/" target="_blank" rel="nofollow">umeng</a>
+							<a href="https://link.jianshu.com?t=https://www.talkingdata.com" target="_blank" rel="nofollow">TalkingData</a>
+							<a href="https://link.jianshu.com?t=https://www.google.com/analytics/" target="_blank" rel="nofollow">Google Analytics</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<h4>2. 可视化埋点（客户端）</h4>
+			<ul>
+				<li>
+					<strong>原理</strong>
+					<ul>
+						<li>参考手游APP的做法，把核心代码和配置、资源分开，在APP启动的时候通过网络更新配置和资源</li>
+						<li>在虚拟的可视化界面，<strong>对支持的控件类型</strong>的实例，点击配置事件(event)，然后发布，配置通过后端接口直接下发给APP，所有安装有嵌入SDK的APP都会在启动时或者定时获取相应的配置。以后，真实的用户使用时，点击这个按钮，就会发送事件到后端
+						</li>
+						<li>实现细节：
+							<ol>
+								<li>在嵌入了SDK的APP开启可视化埋点模式，与后端联通时，SDK会应后端的要求，定期（例如每秒）做一次截图，而SDK在为App截图的同时，会从keyWindow对象开始进行遍历它的subviews()，得到当前视图下所有 UIView、UIResponder对象的层级关系。对于屏幕上的任何一个UIView对象，如 Button、Textfield等它都有一条唯一的从keyWindow到它的路径，这个路径上每个节点，都由ClassName、它是父节点的第几个subview、.text()等属性的值等标识。相对于父节点的坐标、长宽高等可视化方面的信息，是作为这个节点的属性存在。</li>
+								<li>服务端根据截屏和可视化信息来重新进行页面渲染，并且根据控件的类型，来识别哪些控件是可以增加可埋点的，并且将之标识出来。</li>
+								<li>当使用者在后台的截屏画面上点击了某个可埋点的控件时，后台会要求使用者做一些事件关联方面的配置，并且将配置信息进行保存和部署。</li>
+								<li>SDK 在启动或者例行轮询时拿到这些配置信息，则会通过.addTarget:action:forControlEvents:接口，为每个关联的控件添加的点击或者编辑行为的监听，并且在回掉函数里面调用 Sensors Analytics SDK 的接口发送相应事件的 track 信息。</li>
+							</ol>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="image-package">
+				<div class="image-container" style="max-width: 700px; max-height: 773px;">
+					<div class="image-container-fill" style="padding-bottom: 110.45%;"></div>
+					<div class="image-view" data-width="1282" data-height="1416">
+						<img data-original-src="//upload-images.jianshu.io/upload_images/20467-9d874bc1e16a869a.png" data-original-width="1282" data-original-height="1416" data-original-format="image/png" data-original-filesize="681233" class="image-loading" style="cursor: zoom-in;">
+					</div>
+				</div>
+				<div class="image-caption">event.png</div>
+			</div>
+			<ul>
+				<li>
+					<p><strong>优点</strong></p>
+					<ul>
+						<li>可视化埋点很好地解决了代码埋点的埋点代价大和更新代价大两个问题。</li>
+						<li>
+							<ul>
+								<li>新增埋点在所有版本生效，不存在老版本迭代问题（只要老版本app有嵌入sdk)</li>
+							</ul>
+						</li>
+						<li>不懂代码的产品运营人员也可以通过后台可视化界面配置统计埋点并实时下发到客户端生效</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>不足</strong></p>
+					<ul>
+						<li>可视化埋点能够覆盖的功能有限的，目前并不是所有的控件操作都可以通过这种方案进行定制</li>
+						<li>不能自定义设置事件属性
+							<ul>
+								<li>例如对于评论“提交”事件，并不能将评论的内容作为事件的属性进行上传</li>
+								<li>在上传事件时，就只能上传SDK自动收集的设备、地域、网络等默认属性，以及一些通过代码设置的全局公共属性了</li>
+							</ul>
+						</li>
+						<li>数据传输的时效性和可靠性不好保证
+							<ul>
+								<li>客户端埋点的痛病</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>应用场景和产品</strong></p>
+					<ul>
+						<li>场景：
+							<ul>
+								<li>替代代码埋点，支持产品、运营等非技术人员管理埋点</li>
+								<li>活动/新功能快速上线迭代时的效果评估，可利用可视化埋点快速完成</li>
+							</ul>
+						</li>
+						<li>第三方产品： <a href="https://link.jianshu.com?t=https://zhugeio.com/" target="_blank" rel="nofollow">诸葛io</a>
+							<a href="https://link.jianshu.com?t=https://mixpanel.com" target="_blank" rel="nofollow">MixPanel</a>
+							<a href="https://link.jianshu.com?t=https://zhibodemo.cloud.sensorsdata.cn/funnel/" target="_blank" rel="nofollow">神策数据</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<h4>3. 无埋点（全埋点）（客户端）</h4>
+			<blockquote>
+				<p>Heap Analytics 作为最早提出这种方案提供商,早在2013年就已经推出了“无埋点”这个技术方案。后续的用户行为分析的大佬Mixpanel也在去年中期推出同样的服务，诸葛IO也借鉴了两者，在国内最早正式推出了三大平台的无埋点分析方案，同时，国内也还有TalkingData的灵动分析和Growing IO提供了无埋点分析解决方案</p>
+			</blockquote>
+			<ul>
+				<li>
+					<p><strong>原理</strong></p>
+					<ul>
+						<li>在App中嵌入SDK，做统一的“全埋点”，将APP的操作尽量多的采集下来，然后通过界面配置的方式对关键行为进行定义，这样便完成了所谓的“无埋点”数据采集
+							<ol>
+								<li>事先在产品上埋一个 SDK</li>
+								<li>通过可视化的方式，生成配置信息，也就是事件名称之类的定义</li>
+								<li>将采集的数据按照配置重命名，进而就能做分析了</li>
+							</ol>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>优点</strong></p>
+					<ul>
+						<li>解决了数据“回溯”的问题
+							<ul>
+								<li>例如，在某一天，突然想增加某个控件的点击的分析，如果是可视化埋点方案，则只能从这一时刻向后收集数据，而如果是“无埋点”，则从部署 SDK 的时候数据就一直都在收集了</li>
+							</ul>
+						</li>
+						<li>“无埋点”方案也可以自动获取很多启发性的信息，例如，“无埋点”可以告诉使用者这个界面上每个控件分别被点击的概率是多大，哪些控件值得做更进一步的分析等等</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>缺点</strong></p>
+					<ul>
+						<li>与可视化埋点一样，“无埋点”依然没有解决覆盖的操作有限问题，不能灵活地自定义属性</li>
+						<li>数据传输的时效性和可靠性不好保证
+							<ul>
+								<li>客户端埋点的痛病</li>
+							</ul>
+						</li>
+						<li>由于所有的控件事件都全部搜集，可能会给服务器和网络传输带来更大的负载</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>与可视化埋点的区别</strong></p>
+					<ul>
+						<li>可视化埋点先通过界面配置哪些控件的操作数据需要收集</li>
+						<li>“无埋点”则是先尽可能收集所有的控件的操作数据，然后再通过界面配置哪些数据需要在系统里面进行分析</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>应用场景和产品</strong></p>
+					<ul>
+						<li>场景：和可视化埋点相同</li>
+						<li>第三方产品：<a href="https://link.jianshu.com?t=https://heapanalytics.com/" target="_blank" rel="nofollow">Heap Analytics</a>
+							<a href="https://link.jianshu.com?t=https://www.growingio.com/" target="_blank" rel="nofollow">Growing IO</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<h4>4.
+				<a href="https://link.jianshu.com?t=https://developers.google.com/analytics/devguides/collection/protocol/v1/" target="_blank" rel="nofollow">Google Measurement Protocol</a>
+			</h4>
+			<blockquote>
+				<p>上述的三种埋点都是在客户端埋点，都需要客户端嵌入sdk<br>
+				   为避免浪费用户流量，都需要定时或定量的批量打包发送数据</p>
+			</blockquote>
+			<ul>
+				<li>
+					<p><strong>原理</strong></p>
+					<ul>
+						<li>在需要埋点/追踪事件的地方（客户端或服务端）,以规定的格式/规范/协议，把相关的事件属性信息以及相关字段通过HTTP请求发送到指定的接收服务器</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>优点</strong></p>
+					<ul>
+						<li>实时发送数据，不存在数据延时</li>
+						<li>将线上和线下行为联系在一起</li>
+						<li>可同时从客户端和服务器发送数据</li>
+					</ul>
+				</li>
+				<li>
+					<p><strong>缺点</strong></p>
+					<ul>
+						<li>需要手动在代码中埋点</li>
+						<li>考虑到用户流量消耗问题，不可能把所有的用户事件都埋点</li>
+						<li>新的埋点需要发新版</li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<h4>5. 几种埋点的典型使用场景对比</h4>
+			<ul>
+				<li>
+					<p>举例：以电商APP的订单结算页面为例，当用户点击<em>去结算</em>按钮</p>
+					<ul>
+						<li>可视化埋点与无埋点只能采集到用户在某时某刻点击了去结算</li>
+						<li>客户端单代码埋点能采集到去结算订单的金额，商品名称、用户等级等客户端可以获取的信息</li>
+						<li>服务端代码埋点可以采集到商品库存、成本等其他关联的信息</li>
+					</ul>
+				</li>
+				<li>
+					<p>总结：</p>
+					<ul>
+						<li>可视化埋点使用和部署比较简单，但数据获取能力有限</li>
+						<li>客户端代码埋点埋点复杂，能拿到在客户端保存的信息</li>
+						<li>服务端代码埋点能获取到事件以外的关联属性，但部署会影响线上业务代码逻辑和架构，对于这种外围信息，建议离线做join完成</li>
+					</ul>
+				</li>
+			</ul>
+			<table>
+				<thead>
+				<tr>
+					<th>埋点方式</th>
+					<th>数据时效</th>
+					<th>数据可靠(安全)</th>
+					<th>数据可回溯</th>
+					<th>埋点成本</th>
+					<th>对业务的影响</th>
+					<th>用户流量开销</th>
+					<th>新埋点是否对所有客户端版本生效</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>传统代码埋点</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+				</tr>
+				<tr>
+					<td>可视化埋点</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>√</td>
+					<td>√</td>
+					<td>√</td>
+				</tr>
+				<tr>
+					<td>无埋点</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>√</td>
+					<td>√</td>
+					<td>√</td>
+					<td>√</td>
+				</tr>
+				<tr>
+					<td>Measurement Protocol</td>
+					<td>√</td>
+					<td>√</td>
+					<td>X</td>
+					<td>X</td>
+					<td>X</td>
+					<td>√</td>
+					<td>X</td>
+				</tr>
+				</tbody>
+			</table>
+			<pre class="hljs undefined"><code>    数据可回溯是指当上新的事件埋点统计后，支持对历史数据（埋点之前的日期）的统计，且不用回滚数据
+</code></pre>
+			<hr>
+			<h4>6. 我们的选择</h4>
+			<blockquote>
+				<p>A、可视化埋点/无埋点:<br>
+				   产品或技术对 活动/新功能快速上线迭代时的效果评估，可利用可视化埋点快速完成<br>
+				   具体采用哪种方案还要考虑客户端代码改动成本</p>
+				<p>B、参考Measurement Protocol数据采集和发送规范，根据业务定制化埋点</p>
+			</blockquote>
+			<h3>三、参考：</h3>
+			<ul>
+				<li>
+					<a href="https://link.jianshu.com?t=https://sensorsdata.cn/blog/shu-ju-jie-ru-yu-mai-dian/" target="_blank" rel="nofollow">数据采集与埋点</a>
+				</li>
+				<li><a href="https://link.jianshu.com?t=https://heapanalytics.com/" target="_blank" rel="nofollow">HEAP</a></li>
+				<li>
+					<a href="https://link.jianshu.com?t=https://mixpanel.com/report/1021501/event_binding/#connect/ios" target="_blank" rel="nofollow">MIXPANEL</a>
+				</li>
+				<li>
+					<a href="https://link.jianshu.com?t=https://www.sensorsdata.cn/manual/data_model.html" target="_blank" rel="nofollow">事件模型</a>
+				</li>
+				<li>
+					<a href="https://link.jianshu.com?t=https://developers.google.com/analytics/devguides/collection/protocol/v1/" target="_blank" rel="nofollow">Google Measurement Protocol</a>
+				</li>
+				<li>
+					<a href="https://link.jianshu.com?t=https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters" target="_blank" rel="nofollow">埋点参数参考</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+	var utils = {
+		getXPath(elm){
+			let allNodes = document.getElementsByTagName('*')
+			for (var segs = []; elm && elm.nodeType == 1; elm = elm.parentNode) {
+				if (elm.hasAttribute('id')) {
+					let uniqueIdCount = 0
+					for (var n = 0; n < allNodes.length; n++) {
+						if (allNodes[n].hasAttribute('id') && allNodes[n].id == elm.id) uniqueIdCount++;
+						if (uniqueIdCount > 1) break;
+					}
+					if (uniqueIdCount == 1) {
+						segs.unshift('//*[@id="' + elm.getAttribute('id') + '"]');
+						return segs.join('/');
+					} else {
+						return false
+					}
+				} else {
+					for (var i = 1, sib = elm.previousSibling; sib; sib = sib.previousSibling) {
+						if (sib.localName == elm.localName)  i++;
+					}
+					if (i == 1) {
+						if (elm.nextElementSibling) {
+							if (elm.nextElementSibling.localName != elm.localName) {
+								segs.unshift(elm.localName.toLowerCase())
+							} else {
+								segs.unshift(elm.localName.toLowerCase() + '[' + i + ']');
+							}
+						} else {
+							segs.unshift(elm.localName.toLowerCase())
+						}
+					} else {
+						segs.unshift(elm.localName.toLowerCase() + '[' + i + ']');
+					}
+				}
+			}
+			return segs.length ? '/' + segs.join('/') : null
+		},
+		getElem(path){
+			try {
+				var evaluator = new XPathEvaluator();
+				var result = evaluator.evaluate(path, document.documentElement, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+				return result.singleNodeValue || '';
+			} catch (e) {
+				return ''
+			}
+		}
+	}
+	console.info(utils.getElem("/html/body/div/div[2]/div/ul[8]/li"))
+</script>
+</body>
+</html>

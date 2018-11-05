@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" charset="utf-8" src="../CommonUtil.js"></script>
+    <script>
+        /**
+         * 细粒度 和 粗粒度
+         */
+        //万物皆对象： 卖车的商店 -》 卖车 -》 生产车 -》 factory
+        //卖车的商店 可能有 奥迪4s店 奔驰4s店 宝马4s店
+        //搭建一个工厂的环境
+        /****************************** Car Factory ******************************/
+        var CarFactory = {
+            createCar : function(type){
+                var car = eval('new ' + type + '()');
+                Tools.Interface.ensureImplements(car, CarInterface);
+                return car;
+            }
+        };
+
+        //接口对象的实例
+        var CarInterface = new Tools.Interface('CarInterface', ['start', 'run']);
+
+        //SuperClass implements CarInterface
+        function BaseCar(){ }
+        BaseCar.prototype = {
+            constructor: BaseCar,
+            start: function(){
+                console.info(this.constructor.name + ' start');
+            },
+            run: function(){
+                console.info(this.constructor.name + ' run');
+            }
+        };
+
+
+        //class ben bmw audi 都是车
+        function Benz(){
+        }
+        Tools.extend(Benz, BaseCar);
+
+        Benz.prototype.drive = function(){
+            console.info('drive Benz');
+        };
+
+        function Bmw(){
+        }
+        Tools.extend(Bmw, BaseCar);
+
+        function Audi(){
+        }
+        Tools.extend(Audi, BaseCar);
+
+        /****************************** Car Shop ******************************/
+        //买车的商店
+        //抽象类
+        function CarShop(){}
+
+        CarShop.prototype = {
+            constructor: CarShop,
+            sellCar: function(){
+                //return CarFactory.createCar(type);
+                this.abstractSellCar();
+            },
+            abstractSellCar: function(){
+                throw new Error('this method is abstract...');
+            }
+        };
+
+        //Benz 4s 店
+        function BenzCarShop(){};
+        Tools.extend(BenzCarShop, CarShop);
+        BenzCarShop.prototype =  {
+            constructor: BenzCarShop,
+            sellCar: function(type){
+                var car;    //生命一个变量
+                var types = ['sl200', 'sl250'];
+                for(t in types){
+                    //如果我的商店里有你想要的汽车型号
+                    if(types[t] === type){
+                        car = CarFactory.createCar('Benz');
+                        return car;
+                    }else{
+                        alert('没你要的型号');
+                    }
+                }
+            }
+        };
+
+        //宝马 4s 店
+        function BMWCarShop(){};
+        Tools.extend(BMWCarShop, CarShop);
+        BMWCarShop.prototype =  {
+            constructor: BMWCarShop,
+            sellCar: function(type){
+                var car = CarFactory.createCar('Bmw');
+                return car;
+            }
+        }
+
+        /****************************** Instance ******************************/
+        var shop = new BenzCarShop();
+        var car = shop.sellCar('sl200');
+
+        car.start();
+        car.run();
+        car.drive();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

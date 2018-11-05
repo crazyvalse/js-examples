@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="app">
+	<button @click="goBack">go back</button>
+	<router-link to="/c1">c1</router-link>
+	<router-link to="/c2">c2</router-link>
+	<hr>
+	<router-view></router-view>
+
+</div>
+<script src="./vue.min.js"></script>
+<script src="./vue-router.min.js"></script>
+<script>
+	var c1 = {
+		template: "<div>c1</div>"
+	};
+
+	var c2 = {
+		template: "<div>c2</div>"
+	};
+
+	var router = new VueRouter({
+		routes: [
+			{
+				path: "/c1",
+				component: c1
+			},
+			{
+				path: "/c2",
+				component: c2
+			}
+		]
+	});
+
+
+	new Vue({
+		el: "#app",
+		data: {
+			msg: "Hello World!"
+		},
+		router: router,
+		components: {
+			c1: c1,
+			c2: c2
+		},
+		methods: {
+			goBack: function () {
+				window.history.back()
+				//this.$router.go(-1);
+			}
+		}
+	});
+</script>
+</body>
+</html>

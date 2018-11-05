@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script>
+        function obj(o){
+            function F(){
+            }
+            F.prototype = o;
+            return new F();
+        }
+        var box = {
+            name: 'trigkit4',
+            arr: ['brother', 'sister', 'baba']
+        };
+
+        var b1 = obj(box);
+        alert(b1.name);//trigkit4
+
+        b1.name = 'mike';
+        alert(b1.name);//mike
+
+        alert(b1.arr);//brother,sister,baba
+        b1.arr.push('parents');
+        alert(b1.arr);//brother,sister,baba,parents
+
+        var b2 = obj(box);
+        alert(b2.name);//trigkit4
+        alert(b2.arr);//brother,sister,baba,parents
+    </script>-->
+    <!--<script>
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+
+        //父类的原型对象属性
+        Person.prototype.id = 10;
+        Person.prototype.sayName = function(){
+            alert(this.name);
+        };
+
+        //子类
+        function Boy(name, age, sex){
+            //call apply
+            Person.call(this, name, age);   //借用构造函数继承
+            this.sex = sex;
+        }
+        Boy.prototype = Person.prototype;
+
+        var b = new Boy('张三', 20, '男');
+        /*console.info(b.name, b.sex, b.id);
+        alert(b.name);
+        alert(b.sex);
+        alert(b.id);
+        b.sayName();*/
+
+        var bb = new Boy('张三2', 202, '男2');
+
+        alert(bb.id);
+
+    </script>-->
+
+    <script type="text/javascript">
+
+        function baseClass(){
+            this.showMsg = function(){
+                alert("baseClass::showMsg");
+            }
+
+            this.baseShowMsg = function(){
+                alert("baseClass::baseShowMsg");
+            }
+        }
+
+        baseClass.showMsg = function(){
+            alert("baseClass::showMsg static");
+        }
+
+        function extendClass(){
+            this.showMsg = function(){
+                alert("extendClass::showMsg");
+            }
+        }
+        extendClass.showMsg = function(){
+            alert("extendClass::showMsg static")
+        }
+
+        extendClass.prototype = new baseClass();
+        var instance = new extendClass();
+
+        instance.showMsg(); //显示extendClass::showMsg
+        instance.baseShowMsg(); //显示baseClass::baseShowMsg
+        instance.showMsg(); //显示extendClass::showMsg
+
+        baseClass.showMsg.call(instance);//显示baseClass::showMsg static
+
+        var baseinstance = new baseClass();
+        baseinstance.showMsg.call(instance);//显示baseClass::showMsg
+
+    </script>
+    <script>
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

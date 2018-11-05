@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="app">
+	<button @click="goBack">go back</button>
+	<router-link to="/c1/123">c1</router-link>
+	<router-link to="/c1/321">c1</router-link>
+	<router-link to="/c1">c1</router-link>
+	<router-link to="/c1">c1</router-link>
+	<router-link to="/c2">c2</router-link>
+	<router-link to="/c2?t=t123">c2</router-link>
+	<router-link to="/c2?t=t456">c2</router-link>
+	<router-link to="/c2?t=t789">c2</router-link>
+	<hr>
+	<router-view></router-view>
+
+</div>
+
+<template id="c1">
+	<div>
+		<h1>子菜单</h1>
+		<hr>
+		<div>
+			<router-link to="/c1/123/sub_c1">sub_c1</router-link>
+			<router-link to="/c1/456/sub_c2">sub_c2</router-link>
+		</div>
+		<hr>
+		{{$route.params.id}}
+		<hr>
+		<router-view></router-view>
+	</div>
+</template>
+<template id="sub_c1">
+	<div>
+		这个是 sub_c1111111
+	</div>
+</template>
+<template id="sub_c2">
+	<div>
+		这个是 sub_c222222222223
+	</div>
+</template>
+
+<template id="c2">
+	<div>c2 - query: {{$route.query.t}}</div>
+</template>
+
+<script src="./vue.min.js"></script>
+<script src="./vue-router.min.js"></script>
+<script>
+	var c1 = {
+		template: "#c1",
+	};
+
+	var sub_c1 = {
+		template: "#sub_c1"
+	};
+
+	var sub_c2 = {
+		template: "#sub_c2"
+	};
+	var c2 = {
+		template: "#c2"
+	};
+
+	var router = new VueRouter({
+		routes: [
+			{
+				path: "/c1/:id",
+				component: c1,
+				children: [
+					{
+						path: "sub_c1",
+						component: sub_c1
+					},
+					{
+						path: "sub_c2",
+						component: sub_c2
+					}
+
+				]
+			},
+			{
+				path: "/c2",
+				component: c2,
+			},
+			{
+				path: "sub_c1",
+				component: sub_c1
+			}
+		]
+	});
+
+	new Vue({
+		el: "#app",
+		data: {
+			msg: "Hello World!"
+		},
+		router: router,
+		methods: {
+			goBack: function () {
+				window.history.back()
+				//this.$router.go(-1);
+			}
+		}
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //发布者
+        function Publisher(name){
+            this.name = name;
+            this.subscribers = [];
+        }
+
+        //发送 - 给发布者中的订阅者发消息 - 即调用 订阅者
+        Publisher.prototype.deliver = function(news){
+            var publisher = this;
+            this.subscribers.forEach(function(fn){
+                fn(publisher, news);
+            });
+            return this;
+        };
+
+        //订阅 - 就是把订阅者加入到了发布者的list里面
+        Function.prototype.subscribe = function(publisher){
+            //当前订阅者
+            var sub = this;
+            //如果其中一个返回true，那么整体返回true
+            var alreadyExists = publisher.subscribers.some(function(item){
+                return item === sub;
+            });
+            if(!alreadyExists){
+                publisher.subscribers.push(sub);
+            }
+            return this;
+        };
+
+        //取消订阅
+        Function.prototype.unsubscribe = function(publisher){
+            var sub = this;
+            //filter 过滤函数 循环遍历数组的每一个元素，执行一个函数，如果不匹配，则删除该元素
+            publisher.subscribers = publisher.subscribers.filter(function(item){
+                return item !== sub;
+            });
+            return this;
+        };
+
+
+        window.onload = function(){
+            var pub1 = new Publisher("第一家");
+            var pub2 = new Publisher("第二家");
+            var pub3 = new Publisher("第三家");
+
+            var ft = document.getElementById("fs");
+            var st = document.getElementById("ss");
+
+            var sub1 = function(pub, news){
+                ft.value = pub.name + ":" + news;
+            };
+            var sub2 = function(pub, news){
+                st.value = pub.name + ":" + news;
+            };
+
+            sub1.subscribe(pub1).subscribe(pub2);
+            sub2.subscribe(pub1).subscribe(pub2).subscribe(pub3);
+
+            document.getElementById("firstPublisher").onclick = function(){
+                pub1.deliver(document.getElementById("fptext").value);
+            };
+            document.getElementById("secondPublisher").onclick = function(){
+                pub2.deliver(document.getElementById("sptext").value);
+            };
+            document.getElementById("thirdPublisher").onclick = function(){
+                pub3.deliver(document.getElementById("tptext").value);
+            };
+
+
+        };
+    </script>
+</head>
+<body>
+<input id="firstPublisher" type="button" value="第一家"/><input type="text" id="fptext" /><br/>
+<input id="secondPublisher" type="button" value="第二家"/><input type="text" id="sptext" /><br/>
+<input id="thirdPublisher" type="button" value="第三家"/><input type="text" id="tptext" /><br/>
+
+<br/>
+<textarea id="fs"></textarea>
+<textarea id="ss"></textarea>
+</body>
+</html>

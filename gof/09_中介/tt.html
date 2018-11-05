@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+</head>
+<body>
+
+<script>
+	var a = {
+		sayName: function (b) {
+			console.info(b);
+			console.info("say name");
+		}
+	};
+
+	var name = "sayName";
+	a[name].apply(this, 123);
+</script>
+</body>
+</html>

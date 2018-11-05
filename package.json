@@ -1,0 +1,25 @@
+{
+  "name": "js-examples",
+  "version": "1.0.0",
+  "description": "some js related examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazyvalse/js-examples.git"
+  },
+  "keywords": [
+    "js",
+    "es6",
+    "node",
+    "koa"
+  ],
+  "author": "IsaacGu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crazyvalse/js-examples/issues"
+  },
+  "homepage": "https://github.com/crazyvalse/js-examples#readme"
+}

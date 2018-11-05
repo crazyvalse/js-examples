@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //js中 函数的参数： 形参 实参
+        function test(a, b, c, d) {
+            /* //参数的个数
+             alert(test.length);
+
+             //函数的实际参数
+             //arguments对象 可以访问函数的实际参数
+             alert(arguments.length);
+             alert(arguments[0]);
+             alert(arguments[1]);*/
+
+            /*if(arguments.callee.length == arguments.length) {
+             return a+b;
+             }else{
+             return "参数不正确";
+             }*/
+
+            //arguments对象 用的最多的 还是递归操作
+            //arguments.callee 需要用这个来代替函数本身
+            alert(arguments.callee.length);
+
+        }
+
+        //alert(test(10, 20));
+
+        function fact(num) {
+            if (num < 1) {
+                return 1;
+            } else {
+                return num * arguments.callee(num - 1);
+            }
+        }
+
+        //alert(fact(5));
+
+        //为了避免以下事情的发生，需要在36行 用 arguments.callee
+        var F = fact;
+        fact = null;
+        alert(F(5));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

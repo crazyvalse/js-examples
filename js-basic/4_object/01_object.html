@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*var obj = new Object();
+        obj.name = 'z3';
+        obj.sex = 'men';
+        obj.sayName = function(){
+            alert(this.name);
+        };
+
+        obj.sayName();*/
+
+        /**
+         * 第一种方法 工厂模型
+         */
+        /*function createPerson(name, sex, age){
+            var obj = new Object();
+            obj.name = name;
+            obj.sex = sex;
+            obj.age = age;
+            obj.sayName = function(){
+                alert(this.name);
+            };
+            return obj;
+        }
+
+        var p1 = createPerson('z3', 'man', 20);
+        var p2 = createPerson('l4', 'woman', 23);
+
+        p1.sayName();
+        p2.sayName();*/
+
+        /**
+         * 构造函数式    new Array new Date
+         */
+
+        //第一个字母大写 （类的模版）
+        function Person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.sayName = function(){
+                alert(this.name);
+            };
+        }
+
+        /*!//#1. 构造一个对象, 使用new这个关键字， 传递参数，执行模版代码，返回对象
+        var p1 = new Person('小1', 20, '男');
+        //p1.sayName();
+        alert(p1.constructor ==Person);
+
+        alert(p1.instanceof(Person));*/
+
+        //#1. 当做构造函数使用
+        var p1 = new Person('小1', 20, '男');
+        //#2. 作为普通的函数调用
+        Person('小2', 25, '男');  //在全局定义属性并复制
+        //#3. 在另一个对象的作用域中调用
+        var o = new Object();
+        //call apply
+        Person.call(o, '小2', 25, '男');
+        o.sayName();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

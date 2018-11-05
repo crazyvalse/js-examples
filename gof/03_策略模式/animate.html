@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div style="position: absolute; background-color: blue;width: 100px;height: 100px;" id="div"> 我是div</div>
+<script src="./02_animate.js"></script>
+<script>
+	var div = document.getElementById("div");
+	var animate = new Animate(div);
+
+	animate.start("left", 500, 1000, "strongEaseOut");
+</script>
+</body>
+</html>
+

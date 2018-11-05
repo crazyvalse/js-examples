@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //Object 所有类的基础类
+        //#1. var obj = new Object();
+        var obj = {};
+        obj.name = "张三";
+        obj.age = 20;
+        obj['birthday'] = "2012-01-01"
+
+        obj.say = function(){
+            alert("hello world!");
+        }
+        /*console.info(obj.name, obj.age);
+        obj.say();*/
+
+        //#2. 删除 delete
+        /*delete obj.name;
+        delete obj.age;
+        delete obj.say;
+        console.info(obj);*/
+
+        //#3. 遍历对象 for in
+        /*for(var o in obj) {
+            console.info(obj[o]);
+        }*/
+
+        //object 都有以下属性和方法
+        //#4. Constructor : 保存着用于创建当前对象的函数
+        /*console.info(obj.constructor);
+        var arr = [];
+        console.info(arr.constructor);*/
+
+        //#5. hasOwnProperty(propertyName) 用于检测给定属性在对象当中是否存在
+        /*console.info(obj.hasOwnProperty('name'));
+        console.info(obj.hasOwnProperty('sex'));*/
+
+        //#6. propertyIsEnumerable(propertyName) 是否能被for in枚举出来
+        console.info(obj.propertyIsEnumerable('say'));
+        //toLocaleString toString valueOf 都差不多
+        console.info(obj.toString());
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

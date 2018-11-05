@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        function extend(sub, sup){
+            //1. 实现只继承父类的原型对象 - 用一个空函数进行中转
+            var F = new Function();
+            //2. 实现了空函数和父类的原型兑现高转换
+            F.prototype = sup.prototype;
+            //3. 原型继承
+            sub.prototype = new F();
+            //4. 还原子类的构造器
+            sub.prototype.constructor = sub;
+            //保存一下父类的原型对象； 一方面方便解耦；另一方面可以轻松获得父类的原型对象
+            sub.superclass = sup.prototype;
+
+            //#3. 加保险 - 判断父类的原型构造器
+            if(sup.prototype.constructor == Object.prototype.constructor){
+                sup.prototype.constructor = sup; //手动还原父类的构造器
+            }
+
+        }
+
+
+        /**
+         * 缺点
+         * 干了三件事：
+         * 1. 继承了父类的2次模版，继承了一次父类的原型对象
+         * @param name
+         * @param age
+         * @constructor
+         */
+        //父类
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+
+        //父类的原型对象属性
+        Person.prototype = {
+            constructor: Person,
+            sayHello: function(){
+                alert('Hello world!');
+            }
+        };
+        //子类
+        function Boy(name, age, sex){
+            //call apply
+            //Person.call(this, name, age);   //借用构造函数继承
+            //#2. 解耦
+            Boy.superclass.constructor.call(this, name, age);
+            this.sex = sex;
+        }
+
+        //原型继承 - 繼承父類的两次模版，继承了一次父类的原型对象
+        //Boy.prototype = new Person();
+
+        //#1. 为了避免多次继承 父类模版
+        extend(Boy, Person);
+
+        //#4. 重写
+        Boy.prototype.sayHello = function(){
+            alert("boy says hello!");
+        };
+
+        var b = new Boy('张三', 20, '男');
+        alert(b.name);
+        alert(b.age);
+        alert(b.sex);
+        b.sayHello();
+
+        //#5. 调用父类的方法
+        Boy.superclass.sayHello.call(b);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

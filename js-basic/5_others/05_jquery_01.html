@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /**
+         * 模拟jquery 底层模拟链式编程
+         */
+        /**
+         * 块级作用域
+         * 1. 程序启动的时候，里面的代码直接执行了~
+         * 2. 内部的成员变量，外部无法访问（除了不加var修饰的变量）
+         */
+
+        (function(window, undefined){
+            /*//1. 程序启动的时候，里面的代码直接执行了~
+             alert('我执行了');
+            //2. 内部的成员变量，外部无法访问（除了不加var修饰的变量）
+             a = 10;*/
+
+            // #1. $ 常用的对象 返回给外界， 大型开发一般使用'_'作为私用对象（规范）
+            function _$(arguments){
+                //实现代码
+
+            };
+
+            // 在Function 类上扩展一个可以实现链式编程的方法
+            Function.prototype.method = function(methodName, fn){
+                this.prototype[methodName] = fn;
+                return this;
+            }
+
+            _$.prototype = {
+                constructor: _$,
+                addEvent: function(){
+                    alert('addEvent');
+                    return this;
+                },
+                setStyle: function(){
+                    alert('setStyle');
+                    return this;
+                }
+            }
+
+
+            //#2. 给window上注册一个全局变量，与外界关联
+            window.$ = _$;
+
+            //#3. 写一个准备的方法
+            _$.onReady = function(fn){
+                //1. 实例化出来_$对象 真真正正的注册到 window上面
+                window.$ = function(){
+                    return new _$(arguments);
+                }
+                //2. 执行传入的代码
+                fn();
+                //3. 实现链式编程
+                _$.method('addEvent', function(){
+                    alert('1');
+                }).method('setStyle', function(){
+                    alert('2');
+                });
+            };
+
+
+
+
+
+
+
+
+        })(window); //程序的入口， 把window传入到作用域当中
+        //alert(a);
+
+        $.onReady(function(){
+            $('#div1').addEvent().setStyle();
+            console.info($);
+
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

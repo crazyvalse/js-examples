@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" charset="utf-8" src="../CommonUtil.js"></script>
+    <script>
+        /**
+         * 工厂模式 - 继承
+         */
+
+        //搭建一个工厂的环境
+        //买车的商店
+        function CarShop(){
+
+        }
+
+        CarShop.prototype = {
+            constructor: CarShop,
+            sellCar: function(type){
+                var car;    //声明一个变量
+                switch(type){
+                    case 'Benz' :
+                        car = new Benz();
+                        break;
+                    case 'Bmw' :
+                        car = new Bmw();
+                        break;
+                    case 'Audi' :
+                        car = new Audi();
+                        break;
+                    default:
+                        'not buy it';
+                }
+                Tools.Interface.ensureImplements(car, CarInterface);
+                return car;
+            }
+        };
+
+        //接口对象的实例
+        var CarInterface = new Tools.Interface('CarInterface', ['start', 'run']);
+
+        //SuperClass implements CarInterface
+        function BaseCar(){
+        }
+        BaseCar.prototype = {
+            constructor: BaseCar,
+            start: function(){
+                console.info(this.constructor.name + ' start');
+            },
+            run: function(){
+                console.info(this.constructor.name + ' run');
+            }
+        };
+
+
+        //class ben bmw audi 都是车
+        function Benz(){
+        }
+        Tools.extend(Benz, BaseCar);
+        
+        Benz.prototype.drive = function(){
+            console.info('drive Benz');
+        };
+
+        function Bmw(){
+        }
+        Tools.extend(Bmw, BaseCar);
+
+        function Audi(){
+        }
+        Tools.extend(Audi, BaseCar);
+
+        var shop = new CarShop();
+        var car = shop.sellCar('Benz');
+
+        car.start();
+        car.run();
+        car.drive();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

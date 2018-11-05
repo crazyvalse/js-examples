@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var d1 = new Date();
+        var t1 = d1.getTime();
+
+        for (var i = 0; i < 1000000; i++) {
+            //function test1() { }; //静态，被编译一次，放到内存里面
+            var test2 = new Function(); //动态，调用完就销毁
+        }
+        var d2 = new Date();
+        t2 = d2.getTime();
+        alert(t2 - t1);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

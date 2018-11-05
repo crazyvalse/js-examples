@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+		//达摩 宫本
+		//大桥 莫邪 女娲 吕布 嬴政
+
+		var person = "宫本";
+
+		/*function firstAction (){
+			if(person == "达摩"){
+				console.info("冲过去")
+			}else if (person == "宫本"){
+				console.info("空明斩")
+			}
+		}
+
+		function secondAction () {
+			if( person == "达摩"){
+				console.info("一堆拳打过去")
+			}else if (person == "宫本"){
+				console.info("神速")
+			}
+
+		}
+
+		function mustKill () {
+			if(person == "达摩"){
+				console.info("壁咚")
+			}else if (person == "宫本"){
+				console.info("天下无双");
+			}
+		}*/
+
+		// 抽象 多态 继承 封装
+		//class 分类
+		//一个数据 抽象行为
+		//箱子在商店里 类别 材质 大小 价格 颜色
+		//箱子在仓库里 长 宽 高 重量
+		//快递员
+		var Damo = function () {
+			
+		};
+
+		Damo.prototype = {
+			firstAction: function () {
+				console.info("冲过去")
+			},
+			secondAction: function () {
+				console.info("一堆拳打过去")				
+			},
+			mustKill: function () {
+				console.info("壁咚")
+			}
+		};
+
+		var Gongben = function () {
+
+		};
+
+		Gongben.prototype = {
+			firstAction: function () {
+				console.info("空明斩")
+			},
+			secondAction: function () {
+				console.info("神速")
+			},
+			mustKill: function () {
+				console.info("天下无双")
+			}
+		};
+
+		var Nvwa = function () {
+
+		};
+
+		Nvwa.prototype = {
+			firstAction: function () {
+				console.info("光波")
+			},
+			secondAction: function () {
+				console.info("立方块")
+			},
+			thirdAction: function () {
+				console.info("传送")
+			},
+			mustKill: function () {
+				console.info("大光波")
+			}
+		};
+
+		/*function getInstance (personName) {
+			switch (personName) {
+				case "达摩":
+					return new Damo();
+				case "宫本":
+					return new Gongben();
+				case "女娲":
+					return new Nvwa();
+			}
+		}
+		//var damo = new Damo();
+
+		var xiaoP = getInstance(person);
+
+		function firstAction () {
+			xiaoP.firstAction();
+		}
+
+		function secondAction () {
+			xiaoP.secondAction();
+		}
+
+		function mustKill () {
+			xiaoP.mustKill();
+		}
+		
+		function thirdAction () {
+			xiaoP.thirdAction();
+		}*/
+
+		//私有
+		//公有
+		
+		/*var Person = function (name, age ) {
+			this.name = name;
+			this.age = age;
+
+			this.sayName = function(){
+				console.info(this.name);
+			};
+		};
+
+		Person.prototype = {
+			hasHand: true,
+			hasHair: true,
+			sayHello: function () {
+				console.info(this.name + "说 你好！");
+			}
+		};
+
+		var xiaoP = new Person("小皮", 1);
+		var xiaoL = new Person("小李", 2);
+
+		xiaoP.sayName();
+		xiaoL.sayName();
+
+		xiaoP.sayHello();*/
+
+		/*var Factory = function (name) {
+			if(name == "Gongben"){
+				return new Gongben();
+			}else if(name == "Damo") {
+				return new Damo();
+			}
+		};*/
+
+		var Factory = function (name) {
+			return new this[name]();
+		};
+
+		Factory.prototype.Damo = Damo;
+		Factory.prototype.Gongben = Gongben;
+		Factory.prototype.Nvwa = Nvwa;
+
+	/*	var f = new Factory("f");
+
+		console.info(f.name);*/
+
+
+		var instance = Factory("Damo");
+		var instance1 = new Factory("Damo");
+
+		function firstAction () {
+			instance.firstAction();
+		}
+
+		function secondAction () {
+			instance.secondAction();
+		}
+		
+		function mustKill () {
+			instance.mustKill();
+		}
+
+	</script>
+</head>
+<body>
+	<button onclick="firstAction()">一技能</button>
+	<button onclick="secondAction()">二技能</button>
+	<button onclick="thirdAction()">三技能</button>
+	<button onclick="mustKill()">大招</button>
+</body>
+</html>

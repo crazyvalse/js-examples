@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        function Map() {
+            //private
+            var obj = {}; //空的对象容器，存放键值对
+            this.put = function (key, value) {
+                obj[key] = value;
+            };
+
+            this.size = function () {
+                var count = 0;
+                for (var attr in obj) {
+                    count++;
+                }
+                return count;
+            };
+
+            this.get = function (key) {
+                if (obj.hasOwnProperty(key)) {
+                    return obj[key];
+                } else {
+                    return null;
+                }
+
+            };
+
+            this.remove = function (key) {
+                if (obj.hasOwnProperty(key)) {
+                    delete obj[key];
+                }
+            };
+
+            this.eachMap = function (fn) {
+                for (var attr in obj) {
+                    fn(attr, obj[attr]);
+                }
+            };
+        }
+
+
+        //模拟java中的map
+        var m = new Map();
+        m.put('1', 'abc');
+        m.put('2', 120);
+        m.put('3', true);
+        m.put('3', false);
+        m.put('4', new Date());
+        m.put('5', 0);
+        m.put('6', null);
+        /*console.info(m.size());
+
+         console.info(m.get('1'));
+         console.info(m.get('2'));
+         console.info(m.get('3'));
+         console.info(m.get('4'));
+         console.info(m.get('5'));
+         console.info(m.get('6'));
+         console.info(m.get('7'));*/
+
+        /*m.remove('4');
+        console.info(m.get('4'));*/
+
+        m.eachMap(function (key, value) {
+            console.info(key, value);
+        })
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

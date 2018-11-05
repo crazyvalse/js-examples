@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //#1. 组合使用原型和构造函数
+        /*function Person(name, age, sex) {
+         this.name = name;
+         this.age = age;
+         this.sex = sex;
+         }
+
+         Person.prototype = {
+         constructor: Person,
+         sayName: function () {
+         alert(this.name);
+         }
+         }
+
+         var p1 = new Person('小1', 20, '男');
+         p1.sayName();
+         var p2 = new Person('小2', 22, '男2');
+         p2.sayName();*/
+
+        //#2. 动态原型模式：让你的代码都封装到一起
+        /*function Person(name, age, sex) {
+             this.name = name;
+             this.age = age;
+             this.sex = sex;
+
+             //动态原型方法
+             if (typeof this.sayName != 'function') {
+                 Person.prototype.sayName = function () {
+                    alert(this.name);
+                 }
+             }
+
+         }
+        var p1 = new Person('小1', 20, '男');*/
+        //#3. 稳妥构造函数：非常安全的环境中
+        /**
+         * 1.没有公共属性； 2. 不能使用this对象
+         */
+        function Person(name, age, sex) {
+            //创建一个要返回的对象
+            var obj = new Object();
+            //可以定义一下私有的变量和函数 private
+            //私有化的属性
+            var sex = '男';
+            var saySex = function () {
+
+            }
+
+            //对外的方法
+            var name = name;
+            obj.sayName = function () {
+                alert(name);
+            }
+            return obj;
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

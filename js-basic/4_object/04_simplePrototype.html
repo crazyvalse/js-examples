@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /**
+         * 简单原型
+         */
+        function Person(){
+
+        }
+
+        /*Person.prototype = {
+            name: 'z3',
+            age: 20,
+            say: function(){
+                alert("hello");
+            }
+        };*/
+        //1. 为了避免上面这种情况用下面方法定义
+        Person.prototype = {
+            constructor : Person, //必须得表示原型对象的构造器
+            name: 'z3',
+            age: 20,
+            say: function(){
+                alert("hello");
+            }
+        };
+
+        var p1 = new Person();
+        /*alert(p1.name);
+        p1.say();
+        //出现是 function 原原因就是 把原型对象
+        alert(Person.prototype.constructor);*/
+
+       /* for( attr in p1) {
+            alert(attr);
+        }*/
+
+        /**
+         * #1. ECMA5 给原型对象重新设置构造器的方法 Object.defineProperty
+         * 3个参数：
+         * 参数1： 重设构造器的对象
+         * 参数2： 设置什么属性
+         * 参数3： Options
+         *
+         */
+        /*Object.defineProperty(Person.prototype, 'constructor',{
+            enumerable: false,  //不能枚举
+            value : Person
+        });
+
+        for( attr in p1) {
+            alert(attr);
+        }*/
+
+        /**
+         * 原型的动态特性
+         */
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

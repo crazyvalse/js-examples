@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //pop 于 push
+        /*var arr = new Array();
+        var arr2 = [1, 2, "sasdf", true, new Date()];
+        var result = arr.push(3,4,false);       //push方法向数组中增加元素，返回值未数组的长度
+        var ore = arr.pop();        //pop方法是从数组中弹出值
+        console.info(arr2);
+        console.info(result);
+        console.info(ore);*/
+
+        /**
+         * shift 和 unshift 方法
+         * shift 弹出第一位
+         *
+         */
+        /*var arr = new Array();
+        var arr2 = [1, 2, "sasdf", true, new Date()];
+        var s = arr2.shift();        //弹出第一位
+        console.info(arr2);
+        console.info(s);
+        var ss = arr2.unshift(10000);   //新数组的长度
+        console.info(arr2);
+        console.info(ss);*/
+
+        var jsonParam = {
+            "isIndexed":1,// 是否索引图
+            "path":2,// 图片路径
+            "pic":3,
+            "content":4// 图片说明
+        };
+        delete jsonParam.content;
+        console.info(jsonParam);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+

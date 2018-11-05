@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		div {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<button onclick="toggleDialog()">dialog</button>
+<script>
+	var EnsureSingleton = function (fn) {
+		var instance;
+		return function () {
+			return instance || (instance = fn.apply(this, arguments));
+		};
+	};
+
+	var getDiv = EnsureSingleton(function () {
+		var div = document.createElement("div");
+		div.style.display = "none";
+		document.body.appendChild(div);
+		return div;
+	});
+
+	function toggleDialog () {
+		var div = getDiv();
+		div.style.display = div.style.display == "block" ? "none" : "block";
+	}
+</script>
+</body>
+</html>
