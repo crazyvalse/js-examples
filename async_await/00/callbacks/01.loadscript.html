@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>load-script</title>
+	<script>
+		// loadScript
+		function loadScript (src) {
+			let script = document.createElement('script');
+			script.src = src;
+			document.head.append(script);
+		}
+
+		//use it like this
+		loadScript('./js/myscript.js')
+		foo();  // error: foo is not defined
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

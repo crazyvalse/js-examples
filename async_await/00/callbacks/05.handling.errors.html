@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>load-script-callback</title>
+	<script>
+		//
+		function loadScript (src, callback) {
+			let script = document.createElement('script');
+			script.src = src;
+
+			script.onload = () => callback(null, script);   // add a callback
+			script.onerror = () => callback(new Error(`Script load error for ${src}`));
+			document.head.append(script);
+		}
+
+		//use it like this
+		loadScript('./js/myscript.js', function (error, script) {
+			if (error) {
+				// handle error
+				console.info(1)
+			} else {
+				// script loaded successfully
+				console.info(2)
+			}
+		});
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

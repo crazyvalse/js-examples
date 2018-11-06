@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>load-script</title>
+	<script>
+
+		function loadScript (src) {
+			return new Promise((resolve, reject) => {
+				let script = document.createElement('script');
+				script.src = src;
+
+				script.onload = () => resolve(script);
+				script.onerror = () => reject(new Error('Script load error: ' + src));
+
+				document.head.append(script);
+			});
+		}
+
+		loadScript("./js/one.js")
+			.then(function(script) {
+				return loadScript("./js/two.js");
+			})
+			.then(function(script) {
+				return loadScript("./js/three.js");
+			})
+			.then(function(script) {
+				three(two(one()));
+			});
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

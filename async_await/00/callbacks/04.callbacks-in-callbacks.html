@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>callbacks in callbacks</title>
+	<script>
+		function loadScript (src, callback) {
+			let script = document.createElement('script');
+			script.src = src;
+			script.onload = () => callback(script);
+			document.head.append(script);
+		}
+
+		loadScript('./js/myscript.js', function (script) {
+			alert('myscript is finished!');
+			loadScript('./js/myscript2.js', function (script) {
+				alert('myscript2 has finished!');
+				foo2();
+			})
+		})
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

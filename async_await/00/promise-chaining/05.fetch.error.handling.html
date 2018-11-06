@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fetch error</title>
+	<script>
+		fetch('no-such-user.json') // (*)
+			.then(response => response.json())
+			.then(user => fetch(`https://api.github.com/users/${user.name}`)) // (**)
+			.then(response => response.json())
+			.catch(alert); // SyntaxError: Unexpected token < in JSON at position 0
+		// ...
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
