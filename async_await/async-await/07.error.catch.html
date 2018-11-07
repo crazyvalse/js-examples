@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>error catch</title>
+	<script>
+		async function f() {
+			let response = await fetch('http://no-such-url');
+		}
+
+		// f() becomes a rejected promise
+		f().catch(alert); // TypeError: failed to fetch // (*)
+	</script>
+</head>
+<body>
+
+</body>
+</html>
