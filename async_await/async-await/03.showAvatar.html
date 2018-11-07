@@ -5,8 +5,10 @@
 	<title>show avatar</title>
 	<script>
 		async function showAvatar () {
+			console.info(1)
 			// read our JSON
 			let response = await fetch('https://javascript.info/article/promise-chaining/user.json');
+			console.info(2)
 			let user = await response.json();
 
 			// read github user
@@ -24,10 +26,13 @@
 
 			img.remove();
 
+			console.info(3)
 			return githubUser;
 		}
 
+		console.info(5)
 		showAvatar();
+		console.info(4)
 	</script>
 </head>
 <body>

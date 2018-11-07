@@ -1,15 +1,15 @@
 
-	async function f() {
+async function f() {
 
-		let promise = new Promise((resolve, reject) => {
-			setTimeout(() => resolve("done!"), 1000)
-		});
+	let promise = new Promise((resolve, reject) => {
+		setTimeout(() => resolve("done!"), 1000)
+	});
 
-		let result = await promise; // wait till the promise resolves (*)
+	let result = await promise; // wait till the promise resolves (*)
 
-		console.info(result); // "done!"
-	}
+	console.info(result); // "done!"
+}
 
-	f();
+f()
 
 

@@ -1,7 +1,6 @@
 
 
 loadScript('1.js', function(error, script) {
-
 	if (error) {
 		handleError(error);
 	} else {
