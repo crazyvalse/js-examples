@@ -66,3 +66,4 @@ typings/
 .idea/js-examples.iml
 .idea/dictionaries/codingnuts.xml
 .idea/codeStyles/codeStyleConfig.xml
+.DS_Store
