@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.css" rel="stylesheet">
+	<style>
+		@font-face {
+			font-family: 'fzyh';
+			src: url('./fonts/fzyh.ttf')
+		}
+		p {
+			font-size: 40px;
+			font-family: fzyh;
+		}
+	</style>
+</head>
+<body>
+<i class="fa fa-bath" aria-hidden="true"></i>
+<p>方正黝黑</p>
+<img src="./1.jpeg"/>
+<script>
+
+  document.fonts.ready.then(function() {
+    alert("done!")
+  });
+</script>
+</body>
+</html>

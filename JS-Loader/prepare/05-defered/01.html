@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>deferred</title>
+</head>
+<body>
+<div>
+	顾老师最帅
+</div>
+<script>
+  /**
+   * 1. 先执行其他初始化的代码
+   * 2. 偷得摸的加载文件
+   * 3. 查看有没有
+   * 4. 调用
+   */
+  window.onload = function () {
+    var now = Date.now()
+    // for (;Date.now() - now < 5000;){
+    //
+    // }
+    while (Date.now() - now < 2000) {}
+    toumoxiazai('./01.js')
+    while (Date.now() - now < 2000) {}
+  }
+
+  function toumoxiazai (path) {
+    var o = document.createElement('object')
+    o.data = path
+    o.width = 0
+    o.height = 0
+    o.type = 'text/plain'
+    document.body.appendChild(o)
+  }
+</script>
+</body>
+</html>

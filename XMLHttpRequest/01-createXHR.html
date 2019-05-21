@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01</title>
+</head>
+<body>
+<script>
+  /**
+   * js高级程序设计 - 572 页
+   */
+  function createXHR () {
+    if (typeof XMLHttpRequest !== 'undefined') {
+      return new XMLHttpRequest()
+    } else if (typeof ActiveXObject !== 'undefined') {
+      if (typeof arguments.callee.activeXString !== 'string') {
+        let versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0',
+            'MSXML2.XMLHttp'],
+          i, len
+        for (i = 0, len = versions.length; i < len; i++) {
+          try {
+            new ActiveXObject((versions[i]))
+            arguments.callee.activeXString = versions[i]
+            break
+          } catch (e) {
+            // 跳过
+          }
+        }
+      }
+      return new ActiveXObject(arguments.callee.activeXString)
+    } else {
+      throw new Error('No XHR object available')
+    }
+  }
+
+  let xhr = createXHR()
+  console.info(xhr)
+</script>
+</body>
+</html>

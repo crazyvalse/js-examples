@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>basic-demo</title>
+	<script src="./lib/template-web.js"></script>
+</head>
+
+<body>
+<div id="content"></div>
+
+<script id="test" type="text/html">
+	<input type="text" value="<%- keyword%>"/>
+	搜索关键词： {{keyword}}
+</script>
+<script>
+  var data = {
+    keyword: 'hello'
+  }
+  var html = template('test', data)
+  document.getElementById('content').innerHTML = html
+  console.info()
+</script>
+</body>
+</html>

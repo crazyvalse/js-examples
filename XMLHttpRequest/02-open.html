@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02</title>
+</head>
+<body>
+<script>
+  /**
+   * js高级程序设计 - 573 页
+   */
+  function createXHR () {
+    if (typeof XMLHttpRequest !== 'undefined') {
+      return new XMLHttpRequest()
+    } else if (typeof ActiveXObject !== 'undefined') {
+      if (typeof arguments.callee.activeXString !== 'string') {
+        let versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0',
+            'MSXML2.XMLHttp'],
+          i, len
+        for (i = 0, len = versions.length; i < len; i++) {
+          try {
+            new ActiveXObject((versions[i]))
+            arguments.callee.activeXString = versions[i]
+            break
+          } catch (e) {
+            // 跳过
+          }
+        }
+      }
+      return new ActiveXObject(arguments.callee.activeXString)
+    } else {
+      throw new Error('No XHR object available')
+    }
+  }
+
+  let xhr = createXHR()
+
+  // 1. 发送请求的类型（如get/post等）；2. URL； 3. 是否发送异步请求；
+  xhr.open('get', 'example.txt', false)
+  // 参数是请求主体发送的数据。如果不需要通过请求主体发送数据，则必须传入null，参数是必须的；
+  xhr.send(null)
+</script>
+</body>
+</html>

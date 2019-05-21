@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	var interval = 5 * 60 * 1000  //时间间隔
+  var markTime = 0 // 关键时刻时间戳
+  var nextPopTime = markTime + interval  // 下一个弹框时间戳
+  var time = nextPopTime - Date.now() // 剩余多少秒弹窗
+
+  setTimeout(() => {
+    alert()
+	  // setCookie -> markTime
+	  time = interval
+  }, time)
+
+
+</script>
+</body>
+</html>

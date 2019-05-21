@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<h1>方正悠黑</h1>
+<script>
+  var o = null
+  function asyncPreload () {
+    var fontPath = './fonts/fzyh.TTF'
+
+    if (navigator.appName.indexOf('Microsoft') === 0) {
+      new Image().src = fontPath
+	    return
+    }
+    o = new Image() // document.createElement('object')
+	  o.readystate = function () {
+      console.info('done!')
+	  }
+    o.src = fontPath
+    o.width = 1
+    o.height = 1
+    o.style.visibility = "hidden";
+    // o.type = "text/plain";
+    document.body.appendChild(o)
+  }
+
+  asyncPreload()
+</script>
+</body>
+</html>

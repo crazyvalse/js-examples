@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03</title>
+</head>
+<body>
+<script>
+  /**
+   * js高级程序设计 - 574 页
+   */
+  function createXHR () {
+    if (typeof XMLHttpRequest !== 'undefined') {
+      return new XMLHttpRequest()
+    } else if (typeof ActiveXObject !== 'undefined') {
+      if (typeof arguments.callee.activeXString !== 'string') {
+        let versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0',
+            'MSXML2.XMLHttp'],
+          i, len
+        for (i = 0, len = versions.length; i < len; i++) {
+          try {
+            new ActiveXObject((versions[i]))
+            arguments.callee.activeXString = versions[i]
+            break
+          } catch (e) {
+            // 跳过
+          }
+        }
+      }
+      return new ActiveXObject(arguments.callee.activeXString)
+    } else {
+      throw new Error('No XHR object available')
+    }
+  }
+
+  let xhr = createXHR()
+
+  // 1. 发送请求的类型（如get/post等）；2. URL； 3. 是否发送异步请求；
+  xhr.open('get', 'example.txt', false)
+  // 参数是请求主体发送的数据。如果不需要通过请求主体发送数据，则必须传入null，参数是必须的；
+  xhr.send(null)
+
+  // 根据 status 来判断状态 而不是 statusText
+  // 响应主体的内容会保存到 responseText 属性中；
+  if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+    alert(xhr.responseText)
+  } else {
+    alert('request was unsuccessful: ' + xhr.status)
+  }
+
+</script>
+</body>
+</html>

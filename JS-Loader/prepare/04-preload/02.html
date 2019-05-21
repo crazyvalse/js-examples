@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button onclick="go()">go</button>
+<script>
+  function go () {
+    loadJs('./02.js', function () {
+      execute()
+    })
+  }
+
+  function loadJs (path, callback) {
+    var s = document.createElement('script')
+    s.type = 'text/javascript'
+    s.async = true
+    if (callback && typeof(callback) === 'function') {
+      if (s.readyState) {
+        s.onreadystatechange = function () {
+          if (s.readyState === 'loaded' || s.readyState === 'complete') {
+            s.onreadystatechange = null
+            callback()
+          }
+        }
+      } else {
+        s.onload = function () {
+          callback()
+        }
+      }
+    }
+
+    s.src = path
+    document.body.appendChild(s)
+  }
+</script>
+</body>
+</html>

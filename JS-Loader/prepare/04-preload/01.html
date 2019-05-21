@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button onclick="go('./01.js')">go</button>
+<script>
+	function go (path) {
+	  var s = document.createElement('script')
+		s.src = path
+		s.type = 'text/javascript'
+		s.async = true
+		document.body.appendChild(s)
+  }
+</script>
+</body>
+</html>

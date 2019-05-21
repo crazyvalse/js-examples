@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		@font-face {
+			font-family: 'fzyh';
+			src: url('./assets/fonts/fzyh.ttf')
+		}
+		h1 {
+			font-family: fzyh;
+		}
+	</style>
+</head>
+<body>
+<h3>先把网络调整成 slow 3G，降低网速以查看效果；</h3>
+<h3>具体可以参考 <a href="./readme.html" target="_blank">readme.html</a></h3>
+<h3>以下是例子：</h3>
+<!----------- example ----------->
+<hr>
+<h1>方正黝黑</h1>
+<script>
+  document.fonts.ready.then(function() {
+    alert("done!")
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="./01.js"></script>
+	<script src="./02.js"></script>
+	<script src="./03.js"></script>
+	<script src="./04.js" defer></script>
+	<script src="./05.js"></script>
+	<script src="./06.js" defer></script>
+	<script src="./07.js" defer></script>
+</head>
+<body>
+<h2>hello world</h2>
+<h1>defer 会在解析完之后渲染</h1>
+<div>
+	&gt;span hello
+</div>
+<script>
+  console.info(6)
+window.onload = function () {
+  console.info(7)
+}
+</script>
+</body>
+</html>

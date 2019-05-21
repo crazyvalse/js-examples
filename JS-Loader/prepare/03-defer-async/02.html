@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="./01.js"></script>
+	<script src="./02.js"></script>
+	<script src="./03.js"></script>
+	<script src="./04.js" async></script>
+	<script src="./05.js"></script>
+	<script src="./06.js" async></script>
+	<script src="./07.js" async></script>
+</head>
+<body>
+<h2>hello world</h2>
+<h1>async 会在解析完之前渲染</h1>
+<script>
+  console.info(6)
+window.onload = function () {
+  console.info(7)
+}
+</script>
+</body>
+</html>

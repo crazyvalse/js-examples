@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>async</title>
+</head>
+<body>
+<h1>1</h1>
+<script>
+  /**
+   * 1. 创建 script 标签
+   * 2. async = true
+   * 3. 粘贴 script 标签
+   */
+  (function () {
+    var s = document.createElement('script')
+	  s.type = 'text/javascript'
+		// s.async = true
+	  s.src = './02.js'
+		document.head.appendChild(s)
+  })()
+</script>
+<h2>3</h2>
+<script src="./04.js"></script>
+<h2>5</h2>
+<script>
+	alert(6)
+	window.onload = function () {
+		alert(7)
+  }
+</script>
+<h2>8</h2>
+</body>
+</html>

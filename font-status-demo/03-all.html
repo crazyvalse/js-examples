@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		@font-face {
+			font-family: 'fzyh';
+			src: url('./assets/fonts/fzyh.ttf')
+		}
+		h1 {
+			font-family: fzyh;
+		}
+	</style>
+	<link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+<hr>
+文字图标：<i class="fa fa-bath" aria-hidden="true"></i>
+<hr>
+<h1>方正黝黑</h1>
+<hr>
+具体可以参考： <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/fonts" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Document/fonts</a>
+<script>
+  document.fonts.ready.then(function() {
+    alert("done!")
+  });
+</script>
+</body>
+</html>

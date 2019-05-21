@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="app">
+	<t1></t1>
+</div>
+
+<template id="t1">
+	<div>{{count}} ||| <button @click="increment">increment</button></div>
+</template>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+	var t1 = {
+	  data: function () {
+		  return {
+		    count: 1
+		  }
+    },
+		methods: {
+	    increment: function () {
+		    this.count ++
+      }
+		},
+		template: '#t1' //'<div>{{count}} <button @click="increment">increment</button></div>'
+	}
+	new Vue({
+		el: "#app",
+		data: {
+		  msg: 'hello'
+		},
+		components: {
+		  t1: t1
+		}
+	})
+</script>
+</body>
+</html>
