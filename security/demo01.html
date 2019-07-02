@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>search</title>
+</head>
+<body>
+<input id="searchWord" type="text" value="">
+<button id="go">搜索</button>
+<div id="keyword">您搜索的关键词是<strong></strong></div>
+<script>
+  document.querySelector('#go').onclick = function () {
+
+  }
+  let keyword = getQueryString('keyword')
+  document.querySelector('#searchWord').value = keyword
+  document.querySelector('#keyword').innerHTML = '您搜索的关键词是：<strong>' + keyword + '</strong>'
+
+  function getQueryString (name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+    var r = window.location.search.substr(1).match(reg)
+    if (r != null) return unescape(r[2])
+    return null
+  }
+</script>
+</body>
+</html>

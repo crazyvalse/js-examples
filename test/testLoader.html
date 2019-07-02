@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  function loadJS (path, callback) {
+    debugger
+    var s = document.createElement('script')
+    s.src = path
+    s.type = 'text/javascript'
+    s.id = 'test'
+
+    if (s.onload) {
+      s.onload = function () {
+        alert(2)
+        // do something
+        callback()
+      }
+    } else {
+      // ie6, ie7不支持onload的情况
+      s.onreadystatechange = function () {
+        alert(3)
+        if (s.readyState == 'loaded' || s.readyState == 'complete') {
+          alert(1)
+          // 异步js加载完毕
+          // do something执行操作
+          callback()
+        }
+      }
+    }
+    document.body.appendChild(s)
+  }
+
+  loadJS('https://cdn.bootcss.com/vue/2.6.10/vue.min.js', function () {
+	  alert('done!')
+  })
+</script>
+</body>
+</html>
