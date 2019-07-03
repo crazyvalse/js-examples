@@ -18,11 +18,10 @@
       this.state = {
         isToggleOn: true
       }
-
-      this.handleClick = this.handleClick.bind(this)
     }
 
-    handleClick () {
+    // 这里变成 全局变量
+    handleClick = () => {
       this.setState(state => ({
         isToggleOn: !state.isToggleOn
       }))

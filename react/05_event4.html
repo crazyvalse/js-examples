@@ -18,10 +18,9 @@
       this.state = {
         isToggleOn: true
       }
-
-      this.handleClick = this.handleClick.bind(this)
     }
 
+    // 正常的方法
     handleClick () {
       this.setState(state => ({
         isToggleOn: !state.isToggleOn
@@ -30,7 +29,8 @@
 
     render () {
       return (
-        <button onClick={this.handleClick}>
+        // 箭头函数
+        <button onClick={(e) => this.handleClick(e)}>
           {this.state.isToggleOn ? 'ON' : 'OFF'}
         </button>
       )
