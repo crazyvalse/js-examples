@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	const s = 'hello world'
+	String.prototype.build = function () {
+	  return this.split('').join(' ')
+	}
+
+  console.info(s.build())
+</script>
+</body>
+</html>

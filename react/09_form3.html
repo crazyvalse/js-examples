@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Hello World</title>
+	<script src="./react.development.js"></script>
+	<script src="./react-dom.development.js"></script>
+
+	<!-- Don't use this in production: -->
+	<script src="./babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+	const mountNode = document.getElementById('root')
+  ReactDOM.render(<input value="hi" />, mountNode);
+
+  setTimeout(function() {
+    ReactDOM.render(<input value={null} />, mountNode);
+  }, 5000);
+</script>
+</body>
+</html>
