@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<iframe name="contentIframe" id="contentIframe" src="./content.html"></iframe>
+<script>
+  console.info(contentIframe.contentWindow)
+  // iframe自适应会用到
+  function calcPageHeight(doc) {
+    var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+    var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
+    var height = Math.max(cHeight, sHeight)
+    return height
+  }
+
+  var ifr = document.getElementById('contentIframe')
+  ifr.onload = function () {
+    var iDoc = ifr.contentDocument || ifr.document || ifr.contentWindow
+    var height = calcPageHeight(iDoc);
+    ifr.style.height = height + 'px'
+  }
+</script>
+</body>
+</html>
