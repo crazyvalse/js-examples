@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #demo {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="demo"></div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  //动画目标：div
+  //起始状态：opacity:1
+  //终点状态：opacity:0
+  //补间：5秒完成状态改变
+  const demo = document.querySelector('#demo')
+
+  // TweenMax.to(demo, 5, {
+  //     opacity: 0
+  //   })
+  TweenLite.fromTo('div', 5, {opacity:1}, {opacity:0})
+</script>
+</body>
+</html>

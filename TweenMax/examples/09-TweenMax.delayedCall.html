@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0 10px;
+      padding: 0;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      margin-top: 4px;
+      display: inline-block
+    }
+
+    .green {
+      background-color: #6fb936;
+    }
+  </style>
+</head>
+<body>
+<div class="box green"></div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  // target：目标；duration：持续时间；vars：动画参数；
+  var myTween = new TweenMax('.box', 2, {
+    x: 500,
+  })
+  var myTween2 = TweenMax.delayedCall(2, myFunction, ['参数1', '参数2'])
+
+  function myFunction (param1, param2) {
+    alert('延迟2秒输出：' + param1 + '和' + param2)
+  }
+</script>
+</body>
+</html>

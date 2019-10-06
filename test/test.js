@@ -1,0 +1,2 @@
+let permission = require('./permission')
+

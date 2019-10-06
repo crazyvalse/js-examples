@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0 10px;
+      padding: 0;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 6px;
+      margin-top: 4px;
+      display: inline-block
+    }
+
+    .green {
+      background-color: #6fb936;
+    }
+  </style>
+</head>
+<body>
+<div class="box green"></div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  new TweenMax('.box', 2, {
+    x: 500,
+    ease: Power0.easeNone,
+    delay: 3
+  })
+
+  time = { score: 3 }
+  TweenMax.to(time, 3, {
+    score: 0,
+    ease: Power0.easeNone,
+    onUpdate: function () {
+      document.querySelector('.box').innerHTML = Math.ceil(time.score)
+    }
+  })
+</script>
+</body>
+</html>

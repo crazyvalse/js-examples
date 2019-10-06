@@ -8,7 +8,7 @@
 			.then(response => response.json())
 			.then(user => fetch(`https://api.github.com/users/${user.name}`)) // (**)
 			.then(response => response.json())
-			.catch(alert); // SyntaxError: Unexpected token < in JSON at position 0
+			.catch(alert); // SyntaxError: Unexpected token < in JSON at lastPosition 0
 		// ...
 
 	</script>
