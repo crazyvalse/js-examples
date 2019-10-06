@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    .green {
+      background-color: #6fb936;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="box green"></div>
+</div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  // target：目标；duration：持续时间；vars：动画参数；
+  var myTween = TweenMax.to('.box', 1, {
+    x: 500,
+    ease: Power0.easeNone,
+    alpha: 0
+  })
+</script>
+</body>
+</html>
