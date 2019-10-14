@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script src="./js/pixi.min.js"></script>
+<script src="./js/TweenMax.js"></script>
+<script src="./js/alloy_touch.js"></script>
+<script>
+  // 创建舞台
+  const w = window.innerWidth
+  h = window.innerHeight
+  let app = new PIXI.Application({ width: w, height: h })
+
+  const loader = new PIXI.loaders.Loader()
+  loader.add('sjg1', '/imgs/sjg1.png')
+  loader.add('sjg2', '/imgs/sjg2.png')
+  loader.add('sjg3', '/imgs/sjg3.png')
+  loader.add('sjg4', '/imgs/sjg4.png')
+
+  loader.on('progress', function (target, resource) {  //加载进度
+    console.log(target.progress + '%')
+  })
+
+  loader.once('complete', function (target, resource) {  //加载完成
+    document.body.appendChild(app.view)
+  })
+
+  loader.load()  // 开始加载资源
+
+  // =====================
+  const sprite = {}
+  sprite.sjg1 = new PIXI.Sprite.fromImage('/imgs/sjg1.png')
+  sprite.sjg1.position.set(w / 2, h / 2)
+  sprite.sjg1.alpha = 0
+  sprite.sjg1.anchor.set(0.5, 0.5)
+  app.stage.addChild(sprite.sjg1)
+
+  // =====================
+  let allTimeLine = new TimelineMax({
+    paused: true  //默认停止
+  })
+  let moveMin = -(app.stage.height + 318 * 3)
+  alloyTouch = new AlloyTouch({
+    touch: 'body',//反馈触摸的dom
+    vertical: true,//true代表监听竖直方向touch,false横向
+    min: moveMin, //不必需,运动属性的最小值
+    maxSpeed: 0.1,
+    max: 0, //不必需,滚动属性的最大值
+    bindSelf: false,
+    initialValue: 0,
+    change: function (value) {
+      //动画计算进度
+      let myprogress = value / moveMin
+      console.info(myprogress)
+      allTimeLine.seek(myprogress)
+    }
+  })
+
+  //子时间轴
+  let timeline1 = new TimelineMax({
+    delay: 0 //到时间轴的0.3的位置，让图片从透明到不透明
+  })
+
+  //动画
+  let tweenMax1 = new TweenMax(sprite.sjg1, 1, { alpha: 1 }) //占总时间轴的10%
+  //将动画添加到子时间轴上
+  timeline1.add(tweenMax1, 0)//把动画添加子时间轴的第0帧
+  allTimeLine.add(timeline1, 0.3)//把子时间轴添加到主时间轴上
+</script>
+</body>
+</html>

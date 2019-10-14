@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script src="./js/pixi.min.js"></script>
+<script src="./js/TweenMax.js"></script>
+<script src="./js/alloy_touch.js"></script>
+<script>
+  // 创建舞台
+  const w = window.innerWidth
+  h = window.innerHeight
+  let app = new PIXI.Application({ width: w, height: h })
+
+  const loader = new PIXI.loaders.Loader()
+  loader.add('sjg1', '/imgs/sjg1.png')
+  loader.add('sjg2', '/imgs/sjg2.png')
+  loader.add('sjg3', '/imgs/sjg3.png')
+  loader.add('sjg4', '/imgs/sjg4.png')
+
+  loader.on('progress', function (target, resource) {  //加载进度
+    console.log(target.progress + '%')
+  })
+
+  loader.once('complete', function (target, resource) {  //加载完成
+    document.body.appendChild(app.view)
+  })
+
+  loader.load()  // 开始加载资源
+
+  // =====================
+  let Sprite = new PIXI.Sprite.fromImage('/imgs/sjg1.png')
+  // 显示在舞台中
+  Sprite.position.set(w / 2, h / 2)
+  Sprite.width = 367
+  Sprite.height = 318
+  Sprite._anchor.set(0.5, 0.5)
+
+  // app.stage.addChild(Sprite)
+
+  // =====================
+  // 创建图片组
+  let imgSprArr = []
+  for (let n = 1; n < 4; n++) {
+    let tempspr = new PIXI.Texture.fromImage('/imgs/sjg' + n + '.png')
+    let temprect = new PIXI.Rectangle(0, 0, 367, 318)
+    let imgSprArrItem = new PIXI.Texture(tempspr, temprect)
+    imgSprArr.push(imgSprArrItem)
+  }
+
+  //设置动画精灵 - 动画效果
+  let animatedSpr = new PIXI.extras.AnimatedSprite(imgSprArr)
+  animatedSpr.position.set(w / 2, h / 2)
+  animatedSpr.anchor.set(0.5, 0.5)
+  animatedSpr.animationSpeed = 0.1
+  animatedSpr.play()
+  app.stage.addChild(animatedSpr)
+
+</script>
+</body>
+</html>

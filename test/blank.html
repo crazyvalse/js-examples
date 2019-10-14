@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html class="ltr" dir="ltr" lang="zh-CN">
+<head><title>云端稿库 - 云端稿库</title>
+	<meta content="initial-scale=1.0, width=device-width" name="viewport"/>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+	<link href="http://portal-mediacloudrr.dev.fzyun.io/o/dynamic-data-mapping-form-renderer/css/main.css" rel="stylesheet" type="text/css"/>
+	<link data-senna-track="temporary" href="http://portal-mediacloudrr.dev.fzyun.io/o/portal-theme-dmc-horizontal/images/favicon.ico" rel="Shortcut Icon"/>
+	<link class="lfr-css-file" data-senna-track="temporary" href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;o&#x2f;portal-theme-dmc-horizontal&#x2f;css&#x2f;aui&#x2e;css&#x3f;browserId&#x3d;firefox&#x26;themeId&#x3d;portalthemedmchorizontal_WAR_portalthemedmchorizontal&#x26;languageId&#x3d;zh_CN&#x26;b&#x3d;7005&#x26;t&#x3d;1568146053317" id="liferayAUICSS" rel="stylesheet" type="text/css"/>
+	<link data-senna-track="temporary" href="&#x2f;o&#x2f;frontend-css-web&#x2f;main&#x2e;css&#x3f;browserId&#x3d;firefox&#x26;themeId&#x3d;portalthemedmchorizontal_WAR_portalthemedmchorizontal&#x26;languageId&#x3d;zh_CN&#x26;b&#x3d;7005&#x26;t&#x3d;1532919730196" id="liferayPortalCSS" rel="stylesheet" type="text/css"/>
+	<link data-senna-track="temporary" href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;o&#x2f;product-navigation-product-menu-web&#x2f;css&#x2f;main&#x2e;css&#x3f;browserId&#x3d;firefox&#x26;themeId&#x3d;portalthemedmchorizontal_WAR_portalthemedmchorizontal&#x26;languageId&#x3d;zh_CN&#x26;b&#x3d;7005&#x26;t&#x3d;1568117244000" id="dd310f7a" rel="stylesheet" type="text/css"/>
+	<script data-senna-track="temporary" type="text/javascript">
+    // <![CDATA[
+    var Liferay = Liferay || {}
+
+    Liferay.Browser = {
+      acceptsGzip: function () {
+        return true
+      },
+
+      getMajorVersion: function () {
+        return 68.0
+      },
+
+      getRevision: function () {
+        return '68.0'
+      },
+      getVersion: function () {
+        return '68.0'
+      },
+
+      isAir: function () {
+        return false
+      },
+      isChrome: function () {
+        return false
+      },
+      isEdge: function () {
+        return false
+      },
+      isFirefox: function () {
+        return true
+      },
+      isGecko: function () {
+        return true
+      },
+      isIe: function () {
+        return false
+      },
+      isIphone: function () {
+        return false
+      },
+      isLinux: function () {
+        return false
+      },
+      isMac: function () {
+        return true
+      },
+      isMobile: function () {
+        return false
+      },
+      isMozilla: function () {
+        return true
+      },
+      isOpera: function () {
+        return false
+      },
+      isRtf: function () {
+        return true
+      },
+      isSafari: function () {
+        return false
+      },
+      isSun: function () {
+        return false
+      },
+      isWebKit: function () {
+        return false
+      },
+      isWindows: function () {
+        return false
+      }
+    }
+
+    Liferay.Data = Liferay.Data || {}
+
+    Liferay.Data.ICONS_INLINE_SVG = true
+
+    Liferay.Data.NAV_SELECTOR = '#navigation'
+
+    Liferay.Data.NAV_SELECTOR_MOBILE = '#navigationCollapse'
+
+    Liferay.Data.isCustomizationView = function () {
+      return false
+    }
+
+    Liferay.Data.notices = [
+      null
+
+    ]
+
+    Liferay.PortletKeys = {
+      DOCUMENT_LIBRARY: 'com_liferay_document_library_web_portlet_DLPortlet',
+      DYNAMIC_DATA_MAPPING: 'com_liferay_dynamic_data_mapping_web_portlet_DDMPortlet',
+      ITEM_SELECTOR: 'com_liferay_item_selector_web_portlet_ItemSelectorPortlet'
+    }
+
+    Liferay.PropsValues = {
+      JAVASCRIPT_SINGLE_PAGE_APPLICATION_TIMEOUT: 0,
+      NTLM_AUTH_ENABLED: false,
+      UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE: 104857600
+    }
+
+    Liferay.ThemeDisplay = {
+
+      getLayoutId: function () {
+        return '7'
+      },
+
+      getLayoutRelativeControlPanelURL: function () {
+        return '/group/guest/~/control_panel/manage'
+      },
+
+      getLayoutRelativeURL: function () {
+        return '/c/portal/layout?p_l_id=31328&p_v_l_s_g_id=0'
+      },
+      getLayoutURL: function () {
+        return '/c/portal/layout?p_l_id=31328&p_v_l_s_g_id=0'
+      },
+      getParentLayoutId: function () {
+        return '0'
+      },
+      isControlPanel: function () {
+        return false
+      },
+      isPrivateLayout: function () {
+        return 'true'
+      },
+      isVirtualLayout: function () {
+        return false
+      },
+
+      getBCP47LanguageId: function () {
+        return 'zh-Hans-CN'
+      },
+      getCDNBaseURL: function () {
+        return 'http://portal-mediacloudrr.dev.fzyun.io'
+      },
+      getCDNDynamicResourcesHost: function () {
+        return ''
+      },
+      getCDNHost: function () {
+        return ''
+      },
+      getCompanyGroupId: function () {
+        return '20151'
+      },
+      getCompanyId: function () {
+        return '20115'
+      },
+      getDefaultLanguageId: function () {
+        return 'zh_CN'
+      },
+      getDoAsUserIdEncoded: function () {
+        return ''
+      },
+      getLanguageId: function () {
+        return 'zh_CN'
+      },
+      getParentGroupId: function () {
+        return '20142'
+      },
+      getPathContext: function () {
+        return ''
+      },
+      getPathImage: function () {
+        return '/image'
+      },
+      getPathJavaScript: function () {
+        return '/o/frontend-js-web'
+      },
+      getPathMain: function () {
+        return '/c'
+      },
+      getPathThemeImages: function () {
+        return 'http://portal-mediacloudrr.dev.fzyun.io/o/portal-theme-dmc-horizontal/images'
+      },
+      getPathThemeRoot: function () {
+        return '/o/portal-theme-dmc-horizontal'
+      },
+      getPlid: function () {
+        return '31800'
+      },
+      getPortalURL: function () {
+        return 'http://portal-mediacloudrr.dev.fzyun.io'
+      },
+      getScopeGroupId: function () {
+        return '20142'
+      },
+      getScopeGroupIdOrLiveGroupId: function () {
+        return '20142'
+      },
+      getSessionId: function () {
+        return ''
+      },
+      getSiteAdminURL: function () {
+        return 'http://portal-mediacloudrr.dev.fzyun.io/group/guest/~/control_panel/manage?p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view'
+      },
+      getSiteGroupId: function () {
+        return '20142'
+      },
+      getURLControlPanel: function () {
+        return '/group/control_panel?refererPlid=31800'
+      },
+      getURLHome: function () {
+        return 'http\x3a\x2f\x2fportal-mediacloudrr\x2edev\x2efzyun\x2eio\x2fweb\x2fguest'
+      },
+      getUserId: function () {
+        return '34342'
+      },
+      getUserName: function () {
+        return '\u7ba1\u7406\u5458'
+      },
+      isAddSessionIdToURL: function () {
+        return false
+      },
+      isFreeformLayout: function () {
+        return false
+      },
+      isImpersonated: function () {
+        return false
+      },
+      isSignedIn: function () {
+        return true
+      },
+      isStateExclusive: function () {
+        return false
+      },
+      isStateMaximized: function () {
+        return false
+      },
+      isStatePopUp: function () {
+        return false
+      }
+    }
+
+    var themeDisplay = Liferay.ThemeDisplay
+
+    Liferay.AUI = {
+
+      getAvailableLangPath: function () {
+        return 'available_languages.jsp?browserId=firefox&themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&colorSchemeId=05&minifierType=js&languageId=zh_CN&b=7005&t=1532919730549'
+      },
+      getCombine: function () {
+        return true
+      },
+      getComboPath: function () {
+        return '/combo/?browserId=firefox&minifierType=&languageId=zh_CN&b=7005&t=1532919730549&'
+      },
+      getDateFormat: function () {
+        return '%Y/%m/%d'
+      },
+      getEditorCKEditorPath: function () {
+        return '/o/frontend-editor-ckeditor-web'
+      },
+      getFilter: function () {
+        var filter = 'raw'
+
+        filter = 'min'
+
+        return filter
+      },
+      getFilterConfig: function () {
+        var instance = this
+
+        var filterConfig = null
+
+        if (!instance.getCombine()) {
+          filterConfig = {
+            replaceStr: '.js' + instance.getStaticResourceURLParams(),
+            searchExp: '\\.js$'
+          }
+        }
+
+        return filterConfig
+      },
+      getJavaScriptRootPath: function () {
+        return '/o/frontend-js-web'
+      },
+      getLangPath: function () {
+        return 'aui_lang.jsp?browserId=firefox&themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&colorSchemeId=05&minifierType=js&languageId=zh_CN&b=7005&t=1532919730549'
+      },
+      getPortletRootPath: function () {
+        return '/html/portlet'
+      },
+      getStaticResourceURLParams: function () {
+        return '?browserId=firefox&minifierType=&languageId=zh_CN&b=7005&t=1532919730549'
+      }
+    }
+
+    Liferay.authToken = 'G0dyerjD'
+
+    Liferay.currentURL = '\x2fgroup\x2fguest\x2f\x3fal\x3dFE\x3abf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa'
+    Liferay.currentURLEncoded = '\x252Fgroup\x252Fguest\x252F\x253Fal\x253DFE\x253Abf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa'
+    // ]]>
+	</script>
+	<script src="/o/js_loader_modules?t=1568146053317" type="text/javascript"></script>
+	<script src="/o/frontend-js-web/everything.jsp?browserId=firefox&amp;themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&amp;colorSchemeId=05&amp;minifierType=js&amp;minifierBundleId=javascript.everything.files&amp;languageId=zh_CN&amp;b=7005&amp;t=1532919730549" type="text/javascript"></script>
+	<script src="/o/js_bundle_config?t=1568146058944" type="text/javascript"></script>
+	<script data-senna-track="temporary" type="text/javascript">
+    // <![CDATA[
+
+    Liferay._editControlsState = 'visible'
+
+    // ]]>
+	</script>
+	<link class="lfr-css-file" data-senna-track="temporary" href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;o&#x2f;portal-theme-dmc-horizontal&#x2f;css&#x2f;main&#x2e;css&#x3f;browserId&#x3d;firefox&#x26;themeId&#x3d;portalthemedmchorizontal_WAR_portalthemedmchorizontal&#x26;languageId&#x3d;zh_CN&#x26;b&#x3d;7005&#x26;t&#x3d;1568146053317" id="liferayThemeCSS" rel="stylesheet" type="text/css"/>
+	<style data-senna-track="temporary" type="text/css">
+
+
+	</style>
+	<script type="text/javascript">
+    // <![CDATA[
+    Liferay.Loader.require('frontend-js-spa-web/liferay/init.es', function (frontendJsSpaWebLiferayInitEs) {
+        (function () {
+          var frontendJsSpaWebLiferayInitEs1 = frontendJsSpaWebLiferayInitEs;
+          (function () {
+            var $ = AUI.$
+            var _ = AUI._
+
+            Liferay.SPA = Liferay.SPA || {}
+            Liferay.SPA.cacheExpirationTime = -1
+            Liferay.SPA.clearScreensCache = false
+            Liferay.SPA.excludedPaths = ['/documents', '/image']
+            Liferay.SPA.loginRedirect = ''
+            Liferay.SPA.requestTimeout = 0
+            Liferay.SPA.userNotification = {
+              message: '看起来这采取比预期要长。',
+              timeout: 30000,
+              title: '哎呀'
+            }
+
+            frontendJsSpaWebLiferayInitEs.default.init(
+              function (app) {
+                app.setPortletsBlacklist({
+                  'com_liferay_layout_admin_web_portlet_MyPagesPortlet': true,
+                  'com_liferay_nested_portlets_web_portlet_NestedPortletsPortlet': true,
+                  'com_liferay_login_web_portlet_LoginPortlet': true,
+                  'com_liferay_login_web_portlet_FastLoginPortlet': true
+                })
+                app.setValidStatusCodes([221, 490, 494, 499, 491, 492, 493, 495, 220])
+              }
+            )
+          })()
+        })()
+      },
+      function (error) {
+        console.error(error)
+      })
+    // ]]>
+	</script>
+	<link data-senna-track="permanent" href="http://portal-mediacloudrr.dev.fzyun.io/o/product-navigation-simulation-theme-contributor/css/simulation_panel.css?browserId=firefox&themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&languageId=zh_CN&b=7005&t=1568146036353" rel="stylesheet" type="text/css"/>
+	<link data-senna-track="permanent" href="http://portal-mediacloudrr.dev.fzyun.io/o/product-navigation-product-menu-theme-contributor/product_navigation_product_menu.css?browserId=firefox&themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&languageId=zh_CN&b=7005&t=1568146036353" rel="stylesheet" type="text/css"/>
+	<link data-senna-track="permanent" href="http://portal-mediacloudrr.dev.fzyun.io/o/product-navigation-control-menu-theme-contributor/product_navigation_control_menu.css?browserId=firefox&themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&languageId=zh_CN&b=7005&t=1568146036353" rel="stylesheet" type="text/css"/>
+	<link data-senna-track="permanent" href="http://portal-mediacloudrr.dev.fzyun.io/o/founder-portal-theme-contributor/founder_portal_control_menu.css?browserId=firefox&themeId=portalthemedmchorizontal_WAR_portalthemedmchorizontal&languageId=zh_CN&b=7005&t=1568146036353" rel="stylesheet" type="text/css"/>
+	<script data-senna-track="permanent" src="http://portal-mediacloudrr.dev.fzyun.io/combo?browserId=firefox&minifierType=js&languageId=zh_CN&b=7005&t=1568146036353&/o/product-navigation-control-menu-theme-contributor/product_navigation_control_menu.js" type="text/javascript"></script>
+	<link data-senna-track="temporary" href="http://portal-mediacloudrr.dev.fzyun.io/o/portal-theme-dmc-horizontal/images/favicon.ico" rel="Shortcut Icon"/>
+</head>
+<body class="controls-visible has-control-menu closed commonuser-control-menu skyBlue yui3-skin-sam guest-site signed-in private-page site">
+<nav class="quick-access-nav" id="ffsb_quickAccessNav"><h1 class="hide-accessible">导航</h1>
+	<ul>
+		<li><a href="#main-content">跳转到内容</a></li>
+	</ul>
+</nav>
+<div class="control-menu control-menu-level-1 hidden-print" data-qa-id="controlMenu" id="ControlMenu">
+	<div class="container-fluid-1280">
+		<ul class="control-menu-level-1-nav control-menu-nav" data-namespace="" data-qa-id="header" id="controlMenu">
+			<li class="control-menu-nav-category sites-control-group">
+				<ul class="control-menu-nav">
+					<li class="control-menu-nav-item ">
+						<a class="control-menu-icon lfr-portal-tooltip product-menu-toggle sidenav-toggler" data-content="body" data-qa-id="productMenu" data-target="#_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_sidenavSliderId" data-title="菜单" data-toggle="sidenav" data-type="fixed-push" data-type-mobile="fixed" data-url='http://portal-mediacloudrr.dev.fzyun.io/c/portal/layout?p_l_id=31800&p_p_id=com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet&p_p_lifecycle=0&p_p_state=exclusive&_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_mvcPath=%2Fportlet%2Fproduct_menu.jsp&_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_selPpid=' href="javascript:;" id="_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_sidenavToggleId">
+							<div class="toast-animation">
+								<div class="pm"></div>
+								<div class="cn"></div>
+							</div>
+						</a></li>
+				</ul>
+			</li>
+			<li class="control-menu-nav-category tools-control-group">
+				<ul class="control-menu-nav"></ul>
+			</li>
+			<li class="control-menu-nav-category user-control-group">
+				<ul class="control-menu-nav"></ul>
+			</li>
+		</ul>
+	</div>
+	<div class="control-menu-body"></div>
+	<div id="controlMenuAlertsContainer"></div>
+</div>
+<div id="wrapper">
+	<section class="founder-container is-vertical founder-layout-container">
+		<header class="founder-container founder-layout-header" style="">
+			<div class="founder-aside founder-logo" style=" ">
+				<a class="logo custom-logo" href1="http://portal-mediacloudrr.dev.fzyun.io/group/guest" title1="访问云端稿库">
+					<img alt="" height="30" width="30" src="/image/company_logo?img_id=31426&amp;t=1568170398188"/> </a></div>
+			<div class="founder-aside founder-title" style=""> 云端稿库</div>
+			<div class="founder-container founder-nav" style="">
+				<div class="founder-container" style="">
+					<aside class="founder-aside founder-side-nav" id="founder-side-nav">
+						<ul class="founder-side-nav-ul" id="navigationCollapse">
+							<li name="云端稿库" class="is-active">
+								<a class="dropdown-toggle active" href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;group&#x2f;guest&#x2f;rr-mc-article">
+									<div class="nav-inner-div"><span class="line">云端稿库</span></div>
+								</a></li>
+						</ul>
+					</aside>
+					<i class="founder-mobile-toggle-button"></i></div>
+				<div class="founder-aside founder-nav-login" style="">
+					<div class="founder-nav-login-inner">
+						<div class="portlet-boundary portlet-boundary_com_founder_portal_common_userbar_UserbarPortlet_ portlet-static portlet-static-end portlet-decorate portlet-user-personal-bar " id="p_p_id_com_founder_portal_common_userbar_UserbarPortlet_">
+							<span id="p_com_founder_portal_common_userbar_UserbarPortlet"></span>
+							<span class="user-avatar-link"> <span> 你好，管理员 </span> <a class="text-default" href="/c/portal/logout" onclick="javascript:return confirm('确定要退出吗?')">[ 退出 ]</a> </span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<section class="founder-container founder-layout-body">
+			<aside class="founder-aside founder-side-sub-nav" name="云端稿库">
+				<ul role="menubar" class="founder-side-sub-nav_ul">
+					<li role="menuitem" tabindex="-1" name="区县汇聚">
+						<a href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;group&#x2f;guest&#x2f;rr-mc-article" name="区县汇聚">
+							<div class="nav-inner-div">
+								<div class="imgBox">
+									<img src="/image/layout_icon?img_id=32362&t=1568170523842" onerror="this.src='/image/company_logo?img_id=31426&amp;t=1568170398188';this.onerror=null;" width="24" height="24"/>
+								</div>
+								<div class="text">区县汇聚</div>
+							</div>
+						</a></li>
+					<li role="menuitem" tabindex="-1" name="全网汇聚">
+						<a href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;group&#x2f;guest&#x2f;rr-mbd-article" name="全网汇聚">
+							<div class="nav-inner-div">
+								<div class="imgBox">
+									<img src="/image/layout_icon?img_id=32369&t=1568170523851" onerror="this.src='/image/company_logo?img_id=31426&amp;t=1568170398188';this.onerror=null;" width="24" height="24"/>
+								</div>
+								<div class="text">全网汇聚</div>
+							</div>
+						</a></li>
+					<li role="menuitem" tabindex="-1" name="权威推荐">
+						<a href="http&#x3a;&#x2f;&#x2f;portal-mediacloudrr&#x2e;dev&#x2e;fzyun&#x2e;io&#x2f;group&#x2f;guest&#x2f;rr-am-article" name="权威推荐">
+							<div class="nav-inner-div">
+								<div class="imgBox">
+									<img src="/image/layout_icon?img_id=32383&t=1568170523857" onerror="this.src='/image/company_logo?img_id=31426&amp;t=1568170398188';this.onerror=null;" width="24" height="24"/>
+								</div>
+								<div class="text">权威推荐</div>
+							</div>
+						</a></li>
+				</ul>
+			</aside>
+			<div class="founder-container-threeNav">
+				<section class="founder-container founder-container-section-main is-vertical">
+					<main class="founder-main" id="content"><h1 class="hide-accessible">云端稿库</h1>
+						<liferay-theme:defineObjects/>
+						<form action="#" id="hrefFm" method="post" name="hrefFm"><span></span></form>
+					</main> <!--<footer class="founder-footer" style="height: 60px;">Footer</footer>--> </section>
+			</div>
+		</section>
+	</section>
+</div>
+<div class="closed hidden-print lfr-product-menu-panel sidenav-fixed sidenav-menu-slider" id="_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_sidenavSliderId">
+	<div class="product-menu sidebar sidenav-menu">
+		<div class="portlet-boundary portlet-boundary_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_ portlet-static portlet-static-end portlet-decorate " id="p_p_id_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_">
+			<span id="p_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet"></span>
+			<div class="lfr-product-menu-sidebar" id="productMenuSidebar">
+				<div class="sidebar-header"><a href="http://portal-mediacloudrr.dev.fzyun.io">
+					<span class="company-details truncate-text"> <img alt="" class="company-logo" src="/image/company_logo?img_id=31426&t=1568170398188"/> <span class="company-name">云端稿库</span> </span>
+					<a href="javascript&#x3a;&#x3b;" class="icon-monospaced sidenav-close visible-xs-block" id="_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_qfkd__null__null">
+						<svg class="lexicon-icon lexicon-icon-times" focusable="false" role="img" title="">
+							<use data-href="http://portal-mediacloudrr.dev.fzyun.io/o/portal-theme-dmc-horizontal/images/lexicon/icons.svg#times"></use>
+							<title>times</title></svg>
+					</a> </a></div>
+				<div class="sidebar-body"></div>
+			</div>
+			<script type="text/javascript">
+        // <![CDATA[
+        AUI().use('io-request', 'liferay-store', 'parse-content', function (A) {
+          (function () {
+            var $ = AUI.$
+            var _ = AUI._
+            var sidenavToggle = $('#_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_sidenavToggleId')
+
+            sidenavToggle.sideNavigation()
+
+            Liferay.once(
+              'screenLoad',
+              function () {
+                var sideNavigation = sidenavToggle.data('lexicon.sidenav')
+
+                if (sideNavigation) {
+                  sideNavigation.destroy()
+                }
+              }
+            )
+
+            var sidenavSlider = $('#_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_sidenavSliderId')
+
+            sidenavSlider.on(
+              'closed.lexicon.sidenav',
+              function (event) {
+                Liferay.Store('com.liferay.product.navigation.product.menu.web_productMenuState', 'closed')
+              }
+            )
+
+            sidenavSlider.on(
+              'open.lexicon.sidenav',
+              function (event) {
+                Liferay.Store('com.liferay.product.navigation.product.menu.web_productMenuState', 'open')
+              }
+            )
+
+            if (Liferay.Util.isPhone() && ($('body').hasClass('open'))) {
+              sidenavToggle.sideNavigation('hide')
+            }
+
+            Liferay.on(
+              'ProductMenu:openUserMenu',
+              function (event) {
+                var userCollapseSelector = '#_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_userCollapse'
+
+                var showUserCollapse = function () {
+                  var userCollapse = $(userCollapseSelector)
+
+                  userCollapse.collapse(
+                    {
+                      parent: '#_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_Accordion',
+                      show: true
+                    }
+                  )
+
+                  userCollapse.collapse('show')
+                }
+
+                if ($('body').hasClass('open')) {
+                  if ($(userCollapseSelector).hasClass('in')) {
+                    sidenavToggle.sideNavigation('hide')
+                  } else {
+                    showUserCollapse()
+                  }
+                } else {
+                  sidenavToggle.sideNavigation('show')
+
+                  if (!sidenavToggle.attr('data-url')) {
+                    showUserCollapse()
+                  } else {
+                    var urlLoadedState = sidenavSlider.data('url-loaded') ? sidenavSlider.data('url-loaded').state() : ''
+
+                    if (urlLoadedState === 'resolved') {
+                      showUserCollapse()
+                    } else {
+                      sidenavSlider.on(
+                        'urlLoaded.lexicon.sidenav',
+                        function (event) {
+                          showUserCollapse()
+                        }
+                      )
+                    }
+                  }
+                }
+              }
+            )
+
+          })()
+        })
+        // ]]>
+			</script>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+  // <![CDATA[
+
+  Liferay.BrowserSelectors.run()
+
+  // ]]>
+</script>
+<script type="text/javascript">
+  // <![CDATA[
+
+  Liferay.currentURL = '\x2fgroup\x2fguest\x2f\x3fal\x3dFE\x3abf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa'
+  Liferay.currentURLEncoded = '\x252Fgroup\x252Fguest\x252F\x253Fal\x253DFE\x253Abf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa'
+
+  // ]]>
+</script>
+<script type="text/javascript">
+  // <![CDATA[
+
+  // ]]>
+</script>
+<script type="text/javascript">
+  // <![CDATA[
+
+  if (Liferay.Data.ICONS_INLINE_SVG) {
+    svg4everybody(
+      {
+        attributeName: 'data-href',
+        polyfill: true
+      }
+    )
+  }
+
+  Liferay.Portlet.register('com_founder_portal_common_userbar_UserbarPortlet')
+
+  Liferay.Portlet.onLoad(
+    {
+      canEditTitle: false,
+      columnPos: 0,
+      isStatic: 'end',
+      namespacedId: 'p_p_id_com_founder_portal_common_userbar_UserbarPortlet_',
+      portletId: 'com_founder_portal_common_userbar_UserbarPortlet',
+      refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d31800\x26p_p_id\x3dcom_founder_portal_common_userbar_UserbarPortlet\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fgroup\x252Fguest\x252F\x253Fal\x253DFE\x253Abf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa\x26settingsScope\x3dportletInstance',
+      refreshURLData: { 'al': ['FE:bf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa'] }
+    }
+  )
+
+  Liferay.Portlet.register('com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet')
+
+  Liferay.Portlet.onLoad(
+    {
+      canEditTitle: false,
+      columnPos: 0,
+      isStatic: 'end',
+      namespacedId: 'p_p_id_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_',
+      portletId: 'com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet',
+      refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d31800\x26p_p_id\x3dcom_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fgroup\x252Fguest\x252F\x253Fal\x253DFE\x253Abf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa\x26settingsScope\x3dportletInstance',
+      refreshURLData: { 'al': ['FE:bf9a1dcad0b37012aa78ddee082e926171e45b46aa10d1bd44fb8e009706d2996cb517cde850ef081b79e52b77325f12cd60f2b2f93bae9287243180a8cdc6e2a7a452c7ad766a65445ff238423867f8858471b8f825ce7fcfed61a656fd1c9b0f00c872b51626ae1cd6a14c3648dbfa'] }
+    }
+  )
+  AUI().use('aui-tooltip', 'liferay-product-navigation-control-menu', 'liferay-menu', 'liferay-notice', 'aui-base', 'liferay-session', 'liferay-poller', function (A) {
+    (function () {
+      var $ = AUI.$
+      var _ = AUI._
+      Liferay.ControlMenu.init('#controlMenu')
+
+      var panelEntryBodies = $('#ControlMenu [data-toggle="sidenav"]').toArray().map(
+        function (item) {
+          return $(item.getAttribute('data-target').split(',')[0])
+        }
+      )
+
+      panelEntryBodies.forEach(
+        function (item) {
+          item.on(
+            'openStart.lexicon.sidenav',
+            function (event) {
+              var itemId = event.target.getAttribute('id')
+
+              panelEntryBodies.forEach(
+                function (item) {
+                  var panelId = item.attr('id')
+
+                  if (panelId !== itemId) {
+                    $('#ControlMenu [data-toggle="sidenav"][data-target*="' + panelId + '"]').sideNavigation('hide')
+                  }
+                }
+              )
+            }
+          )
+        }
+      )
+    })();
+    (function () {
+      var $ = AUI.$
+      var _ = AUI._
+      if (A.UA.mobile) {
+        Liferay.Util.addInputCancel()
+      }
+    })();
+    (function () {
+      var $ = AUI.$
+      var _ = AUI._
+      if (!Liferay.Data.LFR_PORTAL_TOOLTIP) {
+        var triggerShowEvent = ['mouseenter', 'MSPointerDown', 'touchstart']
+
+        if (A.UA.ios) {
+          triggerShowEvent = ['touchstart']
+        }
+
+        Liferay.Data.LFR_PORTAL_TOOLTIP = new A.TooltipDelegate(
+          {
+            constrain: true,
+            opacity: 1,
+            trigger: '.lfr-portal-tooltip',
+            triggerHideEvent: ['click', 'mouseleave', 'MSPointerUp', 'touchend'],
+            triggerShowEvent: triggerShowEvent,
+            visible: false,
+            zIndex: Liferay.zIndex.TOOLTIP
+          }
+        )
+      }
+    })();
+    (function () {
+      var $ = AUI.$
+      var _ = AUI._
+      new Liferay.Menu()
+
+      var liferayNotices = Liferay.Data.notices
+
+      for (var i = 1; i < liferayNotices.length; i++) {
+        new Liferay.Notice(liferayNotices[i])
+      }
+
+      Liferay.Poller.init(
+        {
+          encryptedUserId: 'toCKfMnmJSOHgztCe29xVQ==',
+          supportsComet: false
+        }
+      )
+
+    })();
+    (function () {
+      var $ = AUI.$
+      var _ = AUI._
+      Liferay.Session = new Liferay.SessionBase(
+        {
+          autoExtend: false,
+          redirectOnExpire: false,
+          redirectUrl: 'http\x3a\x2f\x2fportal-mediacloudrr\x2edev\x2efzyun\x2eio\x2fweb\x2fguest',
+          sessionLength: 1800,
+          warningLength: 60
+        }
+      )
+
+      Liferay.Session.plug(Liferay.SessionDisplay)
+
+    })()
+  })
+  // ]]>
+</script>
+<script src="http://portal-mediacloudrr.dev.fzyun.io/o/portal-theme-dmc-horizontal/js/main.js?browserId=firefox&amp;minifierType=js&amp;languageId=zh_CN&amp;b=7005&amp;t=1568146053317" type="text/javascript"></script>
+<script type="text/javascript">
+  // <![CDATA[
+  AUI().use(
+    'aui-base',
+    function (A) {
+      var frameElement = window.frameElement
+
+      if (frameElement && frameElement.getAttribute('id') === 'simulationDeviceIframe') {
+        A.getBody().addClass('lfr-has-simulation-panel')
+      }
+    }
+  )
+  // ]]>
+</script>
+<script>
+  var PATH_PORTLET_CONFIGURATION_CSS_WEB = '/o/portlet-configuration-css-web'
+
+  AUI().applyConfig(
+    {
+      groups: {
+        portlet_css: {
+          base: PATH_PORTLET_CONFIGURATION_CSS_WEB + '/js/',
+          modules: {
+            'liferay-look-and-feel': {
+              path: 'look_and_feel.js',
+              requires: [
+                'aui-color-picker-popover',
+                'aui-io-plugin-deprecated',
+                'aui-io-request',
+                'aui-tabview',
+                'liferay-portlet-url',
+                'liferay-util-window',
+                'liferay-widget-zindex'
+              ]
+            }
+          },
+          root: PATH_PORTLET_CONFIGURATION_CSS_WEB + '/js/'
+        }
+      }
+    }
+  )
+
+  Liferay.provide(
+    Liferay.Portlet,
+    'loadCSSEditor',
+    function (portletId, baseActionURL, baseRenderURL, baseResourceURL) {
+      Liferay.PortletCSS.init(portletId, baseActionURL, baseRenderURL, baseResourceURL)
+    },
+    ['liferay-look-and-feel']
+  )
+</script>
+</body>
+</html>

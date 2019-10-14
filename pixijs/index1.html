@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script src="./js/pixi.min.js"></script>
+<script src="./js/TweenMax.js"></script>
+<script src="./js/alloy_touch.js"></script>
+<script>
+  // 创建舞台
+  let app = new PIXI.Application({ width: 1334, height: 750 })
+  // 导入素材
+
+  const loader = new PIXI.loaders.Loader()
+  loader.add('bg1', '/imgs/1.png')
+  loader.add('bg2', '/imgs/2.png')
+  loader.add('bg3', '/imgs/3.png')
+  loader.add('bg4', '/imgs/4.png')
+  loader.add('bg5', '/imgs/5.png')
+  loader.add('bg6', '/imgs/6.png')
+
+  // target.progress会根据上面图片的多少真实的实现loading效果，返回0~100的小数，然后需要用parseInt()格式化整数。
+  loader.on('progress', function (target, resource) {  //加载进度
+    console.log(target.progress + '%')
+  })
+
+  // 加载完成
+  loader.once('complete', function (target, resource) {
+    document.body.appendChild(app.view)
+    // //初始化场景
+    initScenes()
+    // //初始化精灵
+    // initSprites()
+    // //初始化动画
+    // initAnimation()
+  })
+
+  loader.load()  // 开始加载资源
+
+  /************* scenes ****************/
+  const scenesOptions = [ // 场景数据：定义每个场景的宽高,x/y距离
+    {
+      name: 'scene1',
+      x: 1000, y: 0,
+      width: 3554, height: 750
+    },
+    {
+      name: 'scene2',
+      x: 1000, y: 0,
+      width: 3554, height: 750
+    }
+  ]
+
+  const scenes = {}  // 场景集合 - pixi对象
+
+  function initScenes () { // 初始化场景
+    for (let i = scenesOptions.length - 1; i >= 0; i--) {
+      scenes[scenesOptions[i].name] = new PIXI.Container({
+        width: scenesOptions[i].width,
+        height: scenesOptions[i].height
+      })
+      scenes[scenesOptions[i].name].x = scenesOptions[i].x
+      app.stage.addChild(scenes[scenesOptions[i].name])
+    }
+  }
+
+  const spritesOptions = [
+    {// 第一个场景的精灵
+      bg1: {
+        position: { x: 0, y: 0 }
+      }
+    },
+    {// 第二个场景的精灵
+      bg1: {
+        position: { x: 0, y: 0 }
+      }
+    }
+  ]
+
+</script>
+</body>
+</html>

@@ -30,6 +30,12 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "art-template": "^4.13.2"
+    "art-template": "^4.13.2",
+    "alloytouch": "0.2.5",
+    "axios": "^0.19.0",
+    "core-js": "^2.6.5",
+    "gsap": "2.0.2",
+    "pixi.js": "4.8.4",
+    "vconsole": "^3.3.4"
   }
 }
