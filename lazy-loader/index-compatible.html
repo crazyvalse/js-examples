@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+</head>
+<body>
+<div>
+	<img src="../assets/images/scenes/scene.png">
+</div>
+<div>
+	<img class="lazy" src="../assets/images/300.png" data-src="../assets/images/sprites/chapter-1image3.png">
+</div>
+<script>
+  /**
+   * 1. 创建监听对象 IntersectionObserver
+   * 2. 如果进入视野
+   *  a. 获得懒加载的对象；
+   *  b. 把data中的值赋值给相应的属性；
+   *  c.
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    let lazyImages = [].slice.call(document.querySelectorAll('img.lazy'))
+    let active = false
+
+    const lazyLoad = function () {
+      if (active === false) {
+        active = true
+
+        setTimeout(function () {
+          lazyImages.forEach(function (lazyImage) {
+            //  判断
+            if ((lazyImage.getBoundingClientRect().top <= window.innerHeight
+              && lazyImage.getBoundingClientRect().bottom >= 0)
+              && getComputedStyle(lazyImage).display !== 'none') {
+              lazyImage.src = lazyImage.dataset.src
+              lazyImage.srcset = lazyImage.dataset.srcset
+              lazyImage.classList.remove('lazy')
+
+              lazyImages = lazyImages.filter(function (image) {
+                return image !== lazyImage
+              })
+
+              if (lazyImages.length === 0) {
+                document.removeEventListener('scroll', lazyLoad)
+                window.removeEventListener('resize', lazyLoad)
+                window.removeEventListener('orientationchange', lazyLoad)
+              }
+            }
+          })
+
+          active = false
+        }, 200)
+      }
+    }
+
+    document.addEventListener('scroll', lazyLoad) // 滚动
+    window.addEventListener('resize', lazyLoad) // 重新改变大小
+    window.addEventListener('orientationchange', lazyLoad) // 旋转
+  })
+</script>
+</body>
+</html>
