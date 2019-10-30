@@ -30,6 +30,8 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "art-template": "^4.13.2"
+    "@waiting/base64": "^4.2.9",
+    "art-template": "^4.13.2",
+    "create-hmac": "^1.1.7"
   }
 }
