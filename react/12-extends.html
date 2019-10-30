@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Hello World</title>
+	<script src="./react.development.js"></script>
+	<script src="./react-dom.development.js"></script>
+
+	<!-- Don't use this in production: -->
+	<script src="./babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+  function FancyBorder (props) {
+    return (
+      <div className={'FancyBorder FancyBorder-' + props.color}>
+        yahoo~
+        {props.children}
+      </div>
+    )
+  }
+
+  function WelcomeDialog () {
+    return (
+      <FancyBorder>
+        <h1 className="Dialog-title">
+          Welcome
+        </h1>
+        <p className="Dialog-message">
+          Thank you for visiting our spacecraft!
+        </p>
+      </FancyBorder>
+    )
+  }
+
+  ReactDOM.render(<WelcomeDialog/>, document.getElementById('root'))
+</script>
+</body>
+</html>
