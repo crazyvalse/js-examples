@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="factory.js"></script>
+  <script src="1.js"></script>
+  <script src="2.js"></script>
+  <script src="3.js"></script>
+</head>
+<body>
+<button onclick="s1()">一技能</button>
+<button onclick="s2()">二技能</button>
+<button onclick="s3()">三技能</button>
+<script>
+  /**
+   * 1. 方法的命名 能不能一样？！！！
+   *
+   * 接口 === 约束
+   * 继承 === 省事
+   *
+   * @type {Anqila}
+   */
+
+  var currentObject = ActorFactory('亚瑟')// anqila // currentRole == 'damo' ? damo : anqila
+
+  function chiyao () {
+
+  }
+
+  function huicheng () {
+
+  }
+
+  function s1 () {
+    currentObject.firstAction()
+    // console.info('使用一技能')
+  }
+
+  function s2 () {
+    // console.info('使用二技能')
+    currentObject.secondAction()
+  }
+
+  function s3 () {
+    // console.info('使用三技能')
+    currentObject.thirdAction()
+  }
+
+</script>
+</body>
+</html>
