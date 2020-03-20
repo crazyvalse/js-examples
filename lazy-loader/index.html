@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+</head>
+<body>
+<div>
+	<img src="../assets/images/scenes/scene.png">
+</div>
+<div>
+	<img class="lazy" src="../assets/images/300.png" data-src="../assets/images/sprites/chapter-1image3.png">
+</div>
+<script>
+  /**
+   * 1. 创建监听对象 IntersectionObserver
+   * 2. 如果进入视野
+   *  a. 获得懒加载的对象；
+   *  b. 把data中的值赋值给相应的属性；
+   *  c.
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    var lazyImages = [].slice.call(document.querySelectorAll('img.lazy'))
+    if ('IntersectionObserver' in window) {
+      let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+        console.info(entries)
+        entries.forEach(function (entry) {
+          // 已经进入视野
+          if (entry.isIntersecting) {
+            // 获得对象
+            let lazyImage = entry.target
+            // 把 data-set 赋值给src
+            lazyImage.src = lazyImage.dataset.src
+            // 如果有data-srcset的话，
+            // lazyImage.srcset = lazyImage.dataset.srcset
+            // 如果已经显示了就去掉 lazy类
+            lazyImage.classList.remove('lazy')
+            // 不再监控这个图片
+            lazyImageObserver.unobserve(lazyImage)
+          }
+        })
+      })
+
+      lazyImages.forEach(function (lazyImage) {
+        lazyImageObserver.observe(lazyImage)
+      })
+    }
+  })
+</script>
+</body>
+</html>

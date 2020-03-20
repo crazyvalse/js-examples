@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>daka</title>
+</head>
+<body>
+<div id="time"></div>
+<script>
+  (function () {
+    let times = [
+      {
+        hour: 8,
+        minute: 20,
+        interval: 20
+      },
+      {
+        hour: 11,
+        minute: 35,
+        interval: 5
+      },
+      {
+        hour: 12,
+        minute: 20,
+        interval: 20
+      },
+      {
+        hour: 19,
+        minute: 40,
+        interval: 20
+      }
+    ]
+
+    var date = null
+    let counter = 0
+    let _times = updateTimeInterval()
+    fixTime()
+    console.info(counter, _times)
+    setInterval(() => {
+      date = new Date()
+      if (date.getHours() === _times[counter]['hour']
+        && date.getMinutes() === _times[counter]['minute'] && checkDate(date)) {
+        counter += 1
+        window.open('http://172.25.22.60:7050/Default.aspx?account=hold\\guzm&type=' + counter)
+        if (counter === _times.length) {
+          counter = 0
+          _times = updateTimeInterval()
+          console.info(counter, _times)
+        }
+      }
+    }, 1000 * 60)
+
+    function updateTimeInterval () {
+      return times.map((item) => {
+        return {
+          ...item,
+          minute: item.minute + Math.floor(Math.random() * item.interval)
+        }
+      })
+    }
+
+    function fixTime () {
+      counter = 0
+      for (let index = 0, date = new Date(), item = null; item = _times[index++];) {
+        if (date.getHours() < item.hour || (date.getHours() === item.hour && date.getMinutes() <= item.minute)) {
+          counter = index - 1
+          break
+        }
+      }
+    }
+
+    function checkDate (date) {
+      return date.getDay() > 0 && date.getDay() < 6
+    }
+  })()
+</script>
+</body>
+</html>

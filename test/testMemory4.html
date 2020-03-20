@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="message"></div>
+<script>
+  let then = Date.now()
+  let i = 0
+  let el = document.getElementById('message')
+  while (true) {
+    let now = Date.now()
+    if (now - then > 1000) {
+      if (i++ >= 5) {
+        break
+      }
+      el.innerText += 'hello!\n'
+      console.log(i)
+      then = now
+    }
+  }
+</script>
+</body>
+</html>

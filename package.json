@@ -30,8 +30,15 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "@waiting/base64": "^4.2.9",
+    "alloytouch": "0.2.5",
     "art-template": "^4.13.2",
-    "create-hmac": "^1.1.7"
+    "axios": "^0.19.0",
+    "core-js": "^2.6.5",
+    "create-hmac": "^1.1.7",
+    "git-utils": "^5.6.2",
+    "gsap": "2.0.2",
+    "pixi.js": "4.8.4",
+    "vconsole": "^3.3.4"
+    "@waiting/base64": "^4.2.9",
   }
 }

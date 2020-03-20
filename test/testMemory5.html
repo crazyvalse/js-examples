@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  let then = Date.now()
+  let count = 0
+
+  function nextFrame () {
+    requestAnimationFrame(function () {
+      count++
+      if (count % 20 === 0) {
+        let time = (Date.now() - then) / count
+        let ms = Math.round(time * 1000) / 1000
+        let fps = Math.round(100000 / ms) / 100
+        console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
+      }
+      nextFrame()
+    })
+  }
+
+  nextFrame()
+</script>
+</body>
+</html>

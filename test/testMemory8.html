@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.css';
+
+  var script = document.createElement('script');
+  script.text = 'console.log("after link[rel=stylesheet]")';
+
+  var h2 = document.createElement('h2');
+  h2.innerHTML = 'Hello World';
+
+  document.body.innerHTML = '';
+  document.body.appendChild(link);
+  document.body.appendChild(script);
+  document.body.appendChild(h2);
+</script>
+</body>
+</html>
