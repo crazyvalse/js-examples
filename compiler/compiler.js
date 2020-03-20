@@ -4,7 +4,12 @@
  * @param input
  */
 
-/********************** (/^▽^)/ **********************/
+/**
+ * ============================================================================
+ *                                   (/^▽^)/
+ *                                THE TOKENIZER!
+ * ============================================================================
+ */
 function tokenizer (input) {
   let current = 0 // 追踪位置
 
@@ -104,7 +109,12 @@ let _tokens = tokenizer('(add 2 (subtract 4 2))')
 
 console.info(_tokens)
 
-/********************** ヽ/❀o ل͜ o\ﾉ **********************/
+/**
+ * ============================================================================
+ *                                 ヽ/❀o ل͜ o\ﾉ
+ *                                THE PARSER!!!
+ * ============================================================================
+ */
 
 function parser (tokens) {
   let current = 0
@@ -173,7 +183,12 @@ function parser (tokens) {
 let _ast = parser(_tokens)
 console.info(JSON.stringify(_ast))
 
-/********************** ⌒(❀>◞౪◟<❀)⌒ **********************/
+/**
+ * ============================================================================
+ *                                 ⌒(❀>◞౪◟<❀)⌒
+ *                               THE TRAVERSER!!!
+ * ============================================================================
+ */
 /**
  * So now we have our AST, and we want to be able to visit different nodes with
  * a visitor. We need to be able to call the methods on the visitor whenever we
@@ -244,4 +259,171 @@ function traverser (ast, visitor) {
   }
 
   traverseNode(ast, null)
+}
+
+/**
+ * ============================================================================
+ *                                   ⁽(◍˃̵͈̑ᴗ˂̵͈̑)⁽
+ *                              THE TRANSFORMER!!!
+ * ============================================================================
+ */
+
+/**
+ * Next up, the transformer. Our transformer is going to take the AST that we
+ * have built and pass it to our traverser function with a visitor and will
+ * create a new ast.
+ *
+ * ----------------------------------------------------------------------------
+ *   Original AST                     |   Transformed AST
+ * ----------------------------------------------------------------------------
+ *   {                                |   {
+ *     type: 'Program',               |     type: 'Program',
+ *     body: [{                       |     body: [{
+ *       type: 'CallExpression',      |       type: 'ExpressionStatement',
+ *       name: 'add',                 |       expression: {
+ *       params: [{                   |         type: 'CallExpression',
+ *         type: 'NumberLiteral',     |         callee: {
+ *         value: '2'                 |           type: 'Identifier',
+ *       }, {                         |           name: 'add'
+ *         type: 'CallExpression',    |         },
+ *         name: 'subtract',          |         arguments: [{
+ *         params: [{                 |           type: 'NumberLiteral',
+ *           type: 'NumberLiteral',   |           value: '2'
+ *           value: '4'               |         }, {
+ *         }, {                       |           type: 'CallExpression',
+ *           type: 'NumberLiteral',   |           callee: {
+ *           value: '2'               |             type: 'Identifier',
+ *         }]                         |             name: 'subtract'
+ *       }]                           |           },
+ *     }]                             |           arguments: [{
+ *   }                                |             type: 'NumberLiteral',
+ *                                    |             value: '4'
+ * ---------------------------------- |           }, {
+ *                                    |             type: 'NumberLiteral',
+ *                                    |             value: '2'
+ *                                    |           }]
+ *  (sorry the other one is longer.)  |         }
+ *                                    |       }
+ *                                    |     }]
+ *                                    |   }
+ * ----------------------------------------------------------------------------
+ */
+
+function transformer (ast) {
+
+  let newAst = {
+    type: 'Program',
+    body: []
+  }
+
+  ast._context = newAst.body
+
+  traverser(ast, {
+    NumberLiteral: {
+      enter (node, parent) {
+        parent._context.push({
+          type: 'NumberLiteral',
+          value: node.value
+        })
+      }
+    },
+    StringLiteral: {
+      enter (node, parent) {
+        parent._context.push({
+          type: 'StringLiteral',
+          value: node.value,
+        })
+      }
+    },
+    CallExpression: {
+      enter (node, parent) {
+
+        // We start creating a new node `CallExpression` with a nested
+        // `Identifier`.
+        let expression = {
+          type: 'CallExpression',
+          callee: {
+            type: 'Identifier',
+            name: node.name,
+          },
+          arguments: [],
+        }
+
+        // Next we're going to define a new context on the original
+        // `CallExpression` node that will reference the `expression`'s arguments
+        // so that we can push arguments.
+        node._context = expression.arguments
+
+        // Then we're going to check if the parent node is a `CallExpression`.
+        // If it is not...
+        if (parent.type !== 'CallExpression') {
+
+          // We're going to wrap our `CallExpression` node with an
+          // `ExpressionStatement`. We do this because the top level
+          // `CallExpression` in JavaScript are actually statements.
+          expression = {
+            type: 'ExpressionStatement',
+            expression: expression,
+          }
+        }
+
+        // Last, we push our (possibly wrapped) `CallExpression` to the `parent`'s
+        // `context`.
+        parent._context.push(expression)
+      }
+    }
+  })
+
+  return newAst
+}
+
+/**
+ * ============================================================================
+ *                               ヾ（〃＾∇＾）ﾉ♪
+ *                            THE CODE GENERATOR!!!!
+ * ============================================================================
+ */
+
+function codeGenerator (node) {
+  switch (node.type) {
+    case 'Program':
+      return node.body.map(codeGenerator).join('\n')
+    case 'ExpressionStatement':
+      return (
+        codeGenerator(node.expression) + ';'
+      )
+    case 'CallExpression':
+      return (
+        codeGenerator(node.callee) +
+        '(' +
+        node.arguments.map(codeGenerator)
+          .join(',') + ')'
+      )
+    case 'Identifier':
+      return node.name
+    case 'NumberLiteral':
+      return node.value
+    case 'StringLiteral':
+      return '"' + node.value + '"'
+    default:
+      throw new TypeError(node.type)
+  }
+}
+
+function compiler (input) {
+  let tokens = tokenizer(input)
+  let ast = parser(tokens)
+  let newAst = transformer(ast)
+  return codeGenerator(newAst)
+}
+
+console.info(compiler('(add 2 (subtract 4 2))'))
+
+module.exports = {
+  tokenizer,
+  parser,
+  traverser,
+  transformer,
+  codeGenerator,
+  compiler
 }
