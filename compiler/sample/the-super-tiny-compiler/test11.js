@@ -4,7 +4,7 @@ const {
   transformer,
   codeGenerator,
   compiler,
-} = require('./super-tiny-compiler')
+} = require('./the-super-tiny-compiler.js')
 const assert = require('assert')
 
 const input = '(add 2 (subtract 4 2))'

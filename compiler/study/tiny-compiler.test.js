@@ -1,0 +1,110 @@
+/**
+ * ============================================================================
+ *                                   (/^▽^)/
+ *                                THE TOKENIZER!
+ * ============================================================================
+ *
+ * (add 2 (subtract 4 2))   =>   [{ type: 'paren', value: '(' }, ...]
+ */
+
+const { tokenizer, parser } = require('./tiny-compiler.js')
+let tokens = [
+  { type: 'paren', value: '(' },
+  { type: 'name', value: 'add' },
+  { type: 'number', value: '2' },
+  { type: 'paren', value: '(' },
+  { type: 'name', value: 'subtract' },
+  { type: 'number', value: '4' },
+  { type: 'number', value: '2' },
+  { type: 'string', value: 'zac' },
+  { type: 'paren', value: ')' },
+  { type: 'paren', value: ')' }
+]
+
+let ast = {
+  type: 'Program',
+  body: [
+    {
+      type: 'CallExpression',
+      name: 'add',
+      params: [
+        {
+          type: 'NumberLiteral',
+          value: '2'
+        },
+        {
+          type: 'CallExpression',
+          name: 'subtract',
+          params: [
+            {
+              type: 'NumberLiteral',
+              value: '4'
+            },
+            {
+              type: 'NumberLiteral',
+              value: '2'
+            },
+            {
+              type: 'StringLiteral',
+              value: 'zac'
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+const newAst = {
+  type: 'Program',
+  body: [
+    {
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'CallExpression',
+        callee: {
+          type: 'Identifier',
+          name: 'add'
+        },
+        arguments: [
+          {
+            type: 'NumberLiteral',
+            value: '2'
+          },
+          {
+            type: 'CallExpression',
+            callee: {
+              type: 'Identifier',
+              name: 'subtract'
+            },
+            arguments: [
+              {
+                type: 'NumberLiteral',
+                value: '4'
+              },
+              {
+                type: 'NumberLiteral',
+                value: '2'
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+
+test('step one: tokenizer', () => {
+  expect(tokenizer('(add 2 (subtract 4 2 "zac"))'))
+    .toStrictEqual(tokens)
+})
+
+test('step two: parse', () => {
+  expect(parser(tokens))
+    .toStrictEqual(ast)
+})
+
+test('step three: transformer', () => {
+  expect(parser(ast))
+    .toStrictEqual(newAst)
+})
