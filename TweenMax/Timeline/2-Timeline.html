@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      background-color: #1d1d1d;
+      font-family: "Asap", sans-serif;
+      color: #989898;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    p {
+      line-height: 22px;
+      margin-bottom: 16px;
+      width: 650px;
+    }
+
+    #demo {
+      position: relative;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border-radius: 6px;
+      margin: 4px;
+      display: inline-block;
+      background: grey;
+    }
+  </style>
+</head>
+<body>
+<div id="demo">
+  <div class="box"></div>
+</div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  var tl = new TimelineMax()
+  tl.add(TweenMax.to('.box', 1, {
+    y: 100,
+  }))//将一个动画添加到时间轴
+  tl.add(TweenMax.to('.box', 1, {
+    x: 100,
+  }))//将一个动画添加到时间轴末端，即与前一个动画接续
+  tl.add(TweenMax.to('.box', 1, {
+    y: 0,
+  })) //将一个动画添加到时间轴末端，即与前一个动画接续
+
+  tl.add(TweenMax.to('.box', 1, {
+    x: 0,
+  }))
+
+</script>
+</body>
+</html>

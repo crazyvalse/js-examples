@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .box {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    .green {
+      background-color: #6fb936;
+    }
+
+    .orange {
+      background-color: #f38630;
+    }
+
+    .grey {
+      background-color: #989898;
+    }
+
+  </style>
+</head>
+<body>
+<div class="box green"></div>
+<div class="box orange"></div>
+<div class="box grey"></div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  var myTimeline = new TimelineMax()
+  //添加动画至时间轴，时间轴长为6秒
+  myTimeline.add(TweenLite.to('.green', 6, { x: 600 }))
+  //添加动画至时间轴绝对位置1秒处
+  myTimeline.add(TweenLite.to('.orange', 4, { x: 400 }), 2)
+  //添加动画至时间轴末尾（6秒处），时间轴长变成9秒
+  myTimeline.add(TweenLite.to('.grey', 2, { x: 200 }), 4)
+</script>
+</body>
+</html>

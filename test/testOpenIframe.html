@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  var isIE = !!window.ActiveXObject    //是否IE浏览器
+  var isIE6 = isIE && !window.XMLHttpRequest  //是否IE6浏览器
+  var isIE7 = isIE && !isIE6 && !isIE8  //是否IE7浏览器
+  var isIE8 = isIE && !!document.documentMode  //是否IE8浏览器
+  var availheight = screen.availHeight   //默认高度为屏幕的高度
+  if (isIE8) {
+    availheight = screen.height
+  }
+  //IE11升级弹出窗口小
+  if (!!window.ActiveXObject || 'ActiveXObject' in window) {
+    availheight = screen.height
+  }
+
+  /**********************************************************************************
+   *函数名称: 打开新窗口
+   *功能说明: 通过传递参数打开一个定制的新窗口，
+   *参数说明:
+   surl:        URL地址
+   windowName   弹出窗口的名字（不是文件名），非必须，可用空''代替；
+   iheight      窗口高度；
+   iwidth       窗口宽度；
+   itop         窗口距离屏幕上方的象素值；
+   ileft        窗口距离屏幕左侧的象素值；
+   stoolbar     是否显示工具栏，yes为显示；
+   smenubar     是否显示菜单栏,yes为显示；
+   sscrollbars  是否显示滚动栏,yes为显示；
+   sresizable   是否允许改变窗口大小，yes为允许；
+   slocation    是否显示地址栏，yes为显示；
+   sstatus      是否显示状态栏内的信息（通常是文件已经打开），yes为显示；
+   ***********************************************************************************/
+
+  function openCustomWindow (surl, windowName, itop, ileft, iwidth, iheight, stoolbar, smenubar, sscrollbars, sresizable, slocation, sstatus) {
+    window.open(surl, windowName, 'height=' + iheight + ', width=' + iwidth + ', top=' + itop + ', left=' + ileft + ', toolbar=' + stoolbar + ', menubar=' + smenubar + ', scrollbars=' + sscrollbars + ',resizable=' + sresizable + ',location=' + slocation + ', status=' + sstatus)
+  }
+
+  /**
+   * 打开一个居中的窗口
+   * @param pageUrl url链接
+   * @param innerWidth 宽度，不带px，小于0表示百分比
+   * @param innerHeight 高度，不带px，小于0表示百分比
+   */
+  function openWindowCenter (pageUrl, innerWidth, innerHeight) {
+    var screenWidth = screen.availWidth
+    var screenHeight = screen.availHeight
+    var width = screenWidth
+    var height = screenHeight
+
+    if (innerWidth < 1) {
+      width = screenWidth * innerWidth
+      screenWidth = (screen.availWidth - width) / 2
+    } else {
+      width = innerWidth
+      screenWidth = (screen.availWidth - innerWidth) / 2
+    }
+    if (innerHeight < 1) {
+      height = screenHeight * innerHeight
+      screenHeight = (screen.availHeight - height) / 2
+    } else {
+      height = innerHeight
+      screenHeight = (screen.availHeight - innerHeight) / 2
+    }
+    window.open(pageUrl, '', 'left=' + screenWidth + ',top=' + screenHeight + ',width=' + width + ',height=' + height + ',resizable=no,scrollbars=no,status=no,toolbar=no,menubar=no,location=no')
+  }
+
+  /**
+   * 打开一个居中的窗口，可有滚动条
+   * @param pageUrl url链接
+   * @param innerWidth 长度，不带px
+   * @param innerHeight 宽度，不带px
+   */
+  function openWindowScroll (pageUrl, innerWidth, innerHeight) {
+    var screenWidth = (screen.availWidth - innerWidth) / 2
+    var screenHeight = (screen.availHeight - innerHeight) / 2
+    window.open(pageUrl, '', 'left=' + screenWidth + ',top=' + screenHeight + ',width=' + innerWidth + ',height=' + innerHeight + ',resizable=no,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no')
+  }
+
+  /**
+   * 打开一个居中的窗口，可变大小
+   * @param pageUrl url链接
+   * @param innerWidth 长度，不带px
+   * @param innerHeight 宽度，不带px
+   */
+  function openWindowResizable (pageUrl, innerWidth, innerHeight) {
+    var screenWidth = (screen.availWidth - innerWidth) / 2
+    var screenHeight = (screen.availHeight - innerHeight) / 2
+    window.open(pageUrl, '', 'left=' + screenWidth + ',top=' + screenHeight + ',width=' + innerWidth + ',height=' + innerHeight + ',resizable=yes,scrollbars=no,status=no,toolbar=no,menubar=no,location=no')
+  }
+
+  openWindowCenter('https://www.baidu.com', 500, 500)
+</script>
+</body>
+</html>

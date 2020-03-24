@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+  <style>
+    .chapter::before {
+      content: '" ';
+      font-size: 15em;
+    }
+    .chapter p::first-letter {
+      float: left;
+      font-size: 3em;
+      font-family: Georgia, Times;
+    }
+    .chapter p::first-line {
+      font-family: Georgia, Times;
+      text-transform: uppercase;
+    }
+
+    .comment:target {
+      background-color: #fffec4;
+    }
+
+    .comment:target:not(.comment-downvoted) {
+      background-color: #ff581c;
+    }
+  </style>
+</head>
+<body>
+<h1>A Study In Scarlet</h1>
+<section class="chapter">
+  <p>In the year 1878 I took my degree of Doctor of Medicine of the University fo London, and proceeded to Netley to go through the course prescribed for surgeons in the army.In the year 1878 I took my degree of Doctor of Medicine of the University fo London, and proceeded to Netley to go through the course prescribed for surgeons in the army.In the year 1878 I took my degree of Doctor of Medicine of the University fo London, and proceeded to Netley to go through the course prescribed for surgeons in the army.In the year 1878 I took my degree of Doctor of Medicine of the University fo London, and proceeded to Netley to go through the course prescribed for surgeons in the army.</p>
+  <article class="comment comment-downvoted" id="comment-3">Doctor of Medicine of the University fo London</article>
+  <article class="comment comment-downvoted">Doctor of Medicine of the University fo London</article>
+</section>
+</body>
+</html>

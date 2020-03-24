@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      background-color: #1d1d1d;
+      color: #f3f2ef;
+    }
+
+    #demo {
+      height: 100%;
+      position: relative;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border-radius: 6px;
+      margin-top: 4px;
+      display: inline-block
+    }
+
+    .green {
+      background-color: #6fb936;
+    }
+
+    .orange {
+      background-color: #f38630;
+    }
+
+    .grey {
+      background-color: #989898;
+    }
+
+  </style>
+</head>
+<body>
+<div id="demo">
+  <div class="box green"></div>
+  <div class="box grey"></div>
+  <div class="box orange"></div>
+  <div class="box green"></div>
+  <div class="box grey"></div>
+  <div class="box orange"></div>
+  <div class="box green"></div>
+  <div class="box grey"></div>
+  <div class="box orange"></div>
+</div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  // target：目标；duration：持续时间；vars：动画参数；
+  let tween = TweenMax.staggerTo(".box", 1, {rotation:360, y:100}, 0.5);
+  console.info(Array.isArray(tween))  // true
+</script>
+</body>
+</html>

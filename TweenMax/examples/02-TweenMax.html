@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #demo {
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="demo"></div>
+<script src="minified/TweenMax.min.js"></script>
+<script>
+  // target：目标；duration：持续时间；vars：动画参数；
+  const demo = document.querySelector('#demo')
+  new TweenMax(demo, 1, {
+    x: 300,
+    alpha : 0
+  })
+</script>
+</body>
+</html>

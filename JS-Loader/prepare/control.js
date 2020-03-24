@@ -420,7 +420,7 @@ else {
 			div = document.createElement('div');
 			div.id = "dprint";
 			document.body.appendChild(div);
-			div.style.cssText = "border: 2px solid #999; width: 700px; height: 600px; position: fixed; top: 20px; right: 20px; padding: 8px; background: #FFF; font-size: 10px;";
+			div.style.cssText = "border: 2px solid #999; width: 700px; height: 600px; lastPosition: fixed; top: 20px; right: 20px; padding: 8px; background: #FFF; font-size: 10px;";
 			div.innerHTML += gDprint;
 		}
 
