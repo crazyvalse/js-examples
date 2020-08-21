@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="app">
+	<div style="width: 100%; height: 100px; background-color: blue;"></div>
+	<iframe src="./inner.html" width="100%" seamless
+	        ref="contentIframe"
+	        :scrolling="iframeScrolling"
+	        :style="iframeHeight"
+	        @load="handleContentIframeLoaded"></iframe>
+	<div style="position: fixed; top: 46px;">
+		<button @click="scrollToTitle('a1')">标题一</button>
+		<button @click="scrollToTitle('a2')">标题二</button>
+		<button @click="scrollToTitle('a3')">标题三</button>
+		<button @click="scrollToTitle('a4')">标题四</button>
+	</div>
+</div>
+<script src="vue.min.js"></script>
+<script>
+  /**
+   * 1. 初始化后，自动调整iframe的高度（4次），主要是为了在图片没有加载出来之前，提前看到大致的内容；
+   * 2. 当iframe onload的时候，再次调整iframe的高度
+   */
+  const app = new Vue({
+    el: '#app',
+    data: {
+      iframeScrolling: 'yes',
+      contentIframeHeight: '1200px',
+      autoModifyTimer: null,
+      autoModifyCounter: 4, // 调整
+      autoModifyTimeInterval: 600,
+    },
+    computed: {
+      iframeHeight () {
+        return { height: parseInt(this.contentIframeHeight) + 'px' }
+      }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        this.autoModifyIframeHeight()
+      })
+    },
+    methods: {
+      // 1. 初始化后，自动调整iframe的高度（4次），主要是为了在图片没有加载出来之前，提前看到大致的内容；
+      autoModifyIframeHeight () {
+        this.autoModifyTimer = setInterval(() => {
+          const iframeDocument = getIframeDocument(this.$refs['contentIframe'])
+          const height = calculateIframeHeight(iframeDocument)
+          if (height > 500) {
+            if (--this.autoModifyCounter < 0) {
+              clearInterval(this.autoModifyTimer)
+            }
+            this.iframeScrolling = 'no'
+            this.contentIframeHeight = height + 10
+          }
+        }, this.autoModifyTimeInterval)
+      },
+      // 2. 当iframe onload的时候，再次调整iframe的高度
+      handleContentIframeLoaded () {
+        const iframeDocument = getIframeDocument(this.$refs['contentIframe'])
+        const height = calculateIframeHeight(iframeDocument)
+        if (height > 500) {
+          this.iframeScrolling = 'no'
+        }
+        this.contentIframeHeight = height + 40
+      },
+      // 根据iframe内部元素的id，滚动页面
+      scrollToTitle (id) {
+        const iframeDocument = getIframeDocument(this.$refs['contentIframe'])
+        iframeDocument.getElementById(id).scrollIntoView()
+      }
+    }
+  })
+
+  function getIframeDocument (contentIframe) {
+    return contentIframe.contentDocument || contentIframe.document || contentIframe.contentWindow
+  }
+
+  // 计算 iframe 内部的高度
+  function calculateIframeHeight (doc) {
+    const clientHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+    const scrollHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
+    return Math.max(clientHeight, scrollHeight)
+  }
+</script>
+</body>
+</html>

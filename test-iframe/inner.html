@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		div {
+			min-height: 400px;
+		}
+	</style>
+</head>
+<body style="background-color: yellow; min-height: 800px;">
+<div>
+	<a id="a1" href="#a1">标题一</a>
+</div>
+<div>
+	<a id="a2" href="#a2">标题二</a>
+</div>
+<div>
+	<a id="a3" href="#a3">标题三</a>
+</div>
+<div>
+	<a id="a4" href="#a4">标题四</a>
+</div>
+<script>
+  // 备选方案：
+  // 提供一个方法：根据id显示元素
+  function showTitle (id) {
+    document.getElementById(id).scrollIntoView()
+  }
+</script>
+</body>
+</html>
