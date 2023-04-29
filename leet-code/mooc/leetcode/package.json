@@ -25,7 +25,7 @@
     "express": "^4.17.1",
     "express-graphql": "^0.7.1",
     "graphql": "^15.0.0",
-    "jest": "^24.5.0",
+    "jest": "^29.5.0",
     "regenerator-runtime": "0.12.1"
   },
   "devDependencies": {
